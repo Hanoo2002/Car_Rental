@@ -67,6 +67,12 @@ body{
     position: relative;
     left: 115px;
 }
+
+.btn:hover{
+    background-color: rgb(9, 147, 9);
+    color: white;
+}
+
 .wrapper .register-link {
     font-size: 14px;
     text-align: center;
@@ -89,4 +95,9 @@ body{
     font-size: 15px;
     position: relative;
     left: 50px;
+}
+
+.user , input[type="radio"]{
+    position: relative;
+    left: 155px;
 }

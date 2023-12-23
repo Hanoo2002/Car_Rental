@@ -30,6 +30,11 @@
                 <span class="error" >@error('password')*{{$message}}@enderror</span>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
+            <input type="radio" id="admin" name="user" value="Admin" required>
+            <label for="admin" class="user">Admin</label>
+            <input type="radio" id="customer" name="user" value="Customer" required>
+            <label for="Customer" class="user">Customer</label>
+            <br><br>
 
             <?php if(isset($_SESSION['error'])): ?>
                 <div>

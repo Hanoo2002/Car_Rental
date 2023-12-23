@@ -49,26 +49,66 @@ class CustomAuthController extends Controller
             'email'=>'required|email',
             'password'=>'required|min:6|max:12'
         ]);
+        $selected_user = $request->input('user');
+        if($selected_user == 'Admin')
+        {
+            return $this->adminLogin($request);
+        }
+        else
+        {
+            return $this->userLogin($request);
+        }
+    }
 
+    public function adminLogin(Request $request)
+    {
         $user = User::where('email','=',$request->email)->first();
         if($user)
         {
             if(Hash::check($request->password,$user->password))
             {
-                // $request->session()->put('LoggedUser',$user->id);
-                // return redirect('profile');
-                echo "Login success";
+                $request->session()->put('LoggedUser',$user->id);
+                return redirect('admin_profile');
             }
             else
             {
-                // return back()->with('fail','Invalid password');
-                echo "Invalid password";
+                return back()->with('fail','Invalid password');
             }
         }
         else
         {
-            // return back()->with('fail','No account found for this email');
-            echo "No account found for this email";
+            return back()->with('fail','No account found for this email');
         }
+    }
+
+    public function userLogin(Request $request)
+    {
+        $user = User::where('email','=',$request->email)->first();
+        if($user)
+        {
+            if(Hash::check($request->password,$user->password))
+            {
+                $request->session()->put('LoggedUser',$user->id);
+                return redirect('user_profile');
+            }
+            else
+            {
+                return back()->with('fail','Invalid password');
+            }
+        }
+        else
+        {
+            return back()->with('fail','No account found for this email');
+        }
+    }
+
+    public function adminProfile()
+    {
+        return "admin profile page";
+    }
+
+    public function userProfile()
+    {
+        return "user profile page";
     }
 }
