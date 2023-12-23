@@ -11,22 +11,25 @@
 <body>
 
     <div class="wrapper">
-        <form action="Login.php" method="POST" name="form" onsubmit="return validate()">
+        <form action="login_user" method="POST" name="form">
+            @csrf
             <h1>Login Registration</h1>
              <div class="input-box">
                  <label>
-                     <input type="text" placeholder="Email" name="email" id="email" oninput="email_Verify()">
+                     <input type="text" placeholder="Email" name="email" id="email" value = "{{old('email')}}">
                  </label>
+                 <br>
+                <span class="error" >@error('email')*{{$message}}@enderror</span>
                  <i class='bx bxs-cat'></i>
              </div>
-            <div style="display: none" id="Email_error">please enter you email</div>
             <div class="input-box">
                 <label>
-                    <input type="password" placeholder="password" name="password" id="password" onblur="password_Verify()">
+                    <input type="password" placeholder="password" name="password" id="password">
                 </label>
+                <br>
+                <span class="error" >@error('password')*{{$message}}@enderror</span>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
-            <div style="display: none" id="password_error">please enter you password</div>
 
             <?php if(isset($_SESSION['error'])): ?>
                 <div>
@@ -43,8 +46,6 @@
             </div>
         </form>
     </div>
-
-    <script src="/js/validation.js" defer></script>
 
 </body>
 </html>

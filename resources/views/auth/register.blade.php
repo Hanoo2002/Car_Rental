@@ -11,32 +11,37 @@
 <body>
 
 <div class="wrapper">
-    <form action="Register.php" method="POST" name="form" onsubmit="return validate()">
+    <form action="register_user" method="POST" name="form">
+        @csrf
         <h1>Login Registration</h1>
         <div class="input-box">
             <label>
-                <input type="text" placeholder="Name" name="name" id="name" oninput="name_Verify()">
+                <input type="text" placeholder="Name" name="name" id="name" value = "{{old('name')}}">
             </label>
+            <br>
+            <span class="error" >@error('name')*{{$message}}@enderror</span>
         </div>
-        <div style="display: none" id="name_error">please enter your name</div>
         <div class="input-box">
             <label>
-                <input type="text" placeholder="Email" name="email" id="email" oninput="email_Verify()">
+                <input type="text" placeholder="Email" name="email" id="email" value = "{{old('email')}}">
             </label>
+            <br>
+            <span class="error" >@error('email')*{{$message}}@enderror</span>
         </div>
-        <div style="display: none" id="Email_error">please enter a valid email</div>
         <div class="input-box">
             <label>
-                <input type="password" placeholder="password" name="password" id="password" oninput="password_Verify_Reg()">
+                <input type="password" placeholder="password" name="password" id="password">
             </label>
+            <br>
+            <span class="error" >@error('password')*{{$message}}@enderror</span>
         </div>
-        <div style="display: none" id="password_error">password should be more than 6 characters</div>
         <div class="input-box">
             <label>
-                <input type="password" placeholder="confirm password" name="password_c" id="password_c" oninput="passowrd_confirmation()">
+                <input type="password" placeholder="confirm password" name="password_confirmation" id="password_confirmation">
             </label>
+            <br>
+            <span class="error" >@error('password_confirmation')*{{$message}}@enderror</span>
         </div>
-        <div style="display: none" id="pasCon_error">password doesn't match</div>
 
         <?php if(isset($_SESSION['error'])): ?>
             <div>
@@ -49,7 +54,7 @@
 
         <button name="submit" type="submit" class="btn">Register</button>
         <div class="register-link">
-            <p>Have an account? <a href="/login">login</a> now </p>
+            <p>Have an account? <a href="/">login</a> now </p>
         </div>
     </form>
 </div>
