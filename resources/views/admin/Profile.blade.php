@@ -12,15 +12,15 @@
   <body>
   <div class = "container" >
     <h1 class="title"> Admin Data</h1>
-    
+    <div>
       @include('components.sidebar')
+    </div>
       <br></br>
       <div>
-
-      <div class="data_item"><p > Name: {{$auth->fname}} {{$auth->lame}}</p> </div>
-      <div class="data_item"><p >Email: {{$auth->email}}</p></div>
-      <div class="data_item"><p > ID: {{$auth->id}}</p></div>
-      <div class="data_item"><p > Office Id: {{$auth->office_id}}</p></div>
+      <div class="data_item"><p > Name: Hassan Tamer</p> </div>
+      <div class="data_item"><p >Email: ha@gmail.com</p></div>
+      <div class="data_item"><p > ID: 7405</p></div>
+      <div class="data_item"><p > Office Id: 22A </p></div>
       </div>
    </div>
   </body>
