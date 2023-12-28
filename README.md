@@ -11,3 +11,7 @@ Admin
 - [ ] city dropdown options depend on country
 - [ ] Plate number regex
 - [ ] error msg on comboboxes not showning
+
+Admin Registration
+
+- [ ] office id validation not working / make it combobox

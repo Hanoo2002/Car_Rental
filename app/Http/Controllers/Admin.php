@@ -41,4 +41,36 @@ class Admin extends Controller
         // }
 
     }
+
+    public function register()
+    {
+        return view("admin.Register");
+    }
+
+    public function register_admin(Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'officeID'=>'required',
+            'password'=>'required|confirmed|min:6|max:12'
+        ]);
+
+        //Insert data into database
+        $usr = new User;
+        $usr->name = $request->name;
+        $usr->email = $request->email;
+        $usr->officeID = $request->officeID;
+        $usr->password = bcrypt($request->password);
+        $res = $usr->save();
+
+        if($res)
+        {
+            return back()->with('success','You have registered successfully');
+        }
+        else
+        {
+            return back()->with('fail','Something went wrong');
+        }        
+    }
 }
