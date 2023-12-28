@@ -66,9 +66,9 @@
 
         <div class="pay_method">
             <img class="img" id="visa_pic" src="https://www.pngall.com/wp-content/uploads/2017/05/Visa-Logo-Free-Download-PNG.png">
-            <input type="radio" id="visa" name="visa" value="visa">
+            <input type="radio" id="visa" name="card_choice" value="visa">
           <img class="img" id="m_card" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png">
-          <input type="radio" id="m_card" name="m_card" value="m_card">
+          <input type="radio" id="m_card" name="card_choice" value="m_card">
         </div>
 
         <div class="input-box">
