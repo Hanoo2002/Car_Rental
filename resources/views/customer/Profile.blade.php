@@ -6,16 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
         <title>Customer Profile</title>
-        <link rel="stylesheet" href="{{ asset('css/customer/profile.css') }}">
+        <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     </head>
 <body>
-    <h1>Customer Profile</h1>
-    <div>
+<div class = "container" >
+    <h1 class="title"> Admin Data</h1>
+    
       @include('components.sidebar')
-    </div>
-    <div>
-        <h1>name, {{$auth->name}}</h1>
-        <h1>email, {{$auth->email}}</h1>        
-    </div>
+      <br></br>
+      <div>
+
+      <div class="data_item"><p > Name: </p> </div>
+      <div class="data_item"><p >Email: </p></div>
+      <div class="data_item"><p >  Country</p></div>
+      <div class="data_item"><p > City</p></div>
+      </div>
+   </div>
 </body>
 </html>
