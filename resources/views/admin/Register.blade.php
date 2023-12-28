@@ -20,17 +20,17 @@
         <h1>Admin Registration</h1>
         <div class="input-box">
             <label>
-                <input type="text" placeholder="Name" name="name" id="name" value = "{{old('name')}}">
+                <input type="text" placeholder="first Name" name="f_name" id="f_name" value = "{{old('f_name')}}">
             </label>
             <br>
-            <span class="error" >@error('name')*{{$message}}@enderror</span>
+            <span class="error" >@error('f_name')*{{$message}}@enderror</span>
         </div>
         <div class="input-box">
             <label>
-                <input type="text" placeholder="Email" name="email" id="email" value = "{{old('email')}}">
+                <input type="text" placeholder="last Name" name="l_name" id="l_name" value = "{{old('l_name')}}">
             </label>
             <br>
-            <span class="error" >@error('email')*{{$message}}@enderror</span>
+            <span class="error" >@error('l_name')*{{$message}}@enderror</span>
         </div>
         <div class="input-box">
             <label>
@@ -38,6 +38,20 @@
             </label>
             <br>
             <span class="error" >@error('officeID')*{{$message}}@enderror</span>
+        </div>
+        <div class="input-box">
+            <label>
+                <input type="text" placeholder="ssn" name="ssn" id="ssn">
+            </label>
+            <br>
+            <span class="error" >@error('ssn')*{{$message}}@enderror</span>
+        </div>
+        <div class="input-box">
+            <label>
+                <input type="text" placeholder="Email" name="email" id="email" value = "{{old('email')}}">
+            </label>
+            <br>
+            <span class="error" >@error('email')*{{$message}}@enderror</span>
         </div>
         <div class="input-box">
             <label>
