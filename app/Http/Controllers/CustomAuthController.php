@@ -69,6 +69,7 @@ class CustomAuthController extends Controller
             if(Hash::check($request->password,$user->password))
             {
                 $request->session()->put('LoggedUser',$user->id);
+                session(['user' => $user]);
                 return redirect('admin_profile');
             }
             else
@@ -90,7 +91,8 @@ class CustomAuthController extends Controller
             if(Hash::check($request->password,$user->password))
             {
                 $request->session()->put('LoggedUser',$user->id);
-                return redirect('user_profile');
+                // return redirect('user_profile');
+                return $this->userProfile($request);
             }
             else
             {
@@ -105,12 +107,14 @@ class CustomAuthController extends Controller
 
     public function adminProfile()
     {
-        return view('admin.Profile');
+    return view('admin.Profile');
     }
 
-    public function userProfile()
+
+    public function userProfile(Request $request)
     {
-        return "user profile page";
+        $user = User::where('email', '=', $request->email)->first();
+        return view('customer.Profile', ['auth' => $user]);
     }
 
     public function logout()
