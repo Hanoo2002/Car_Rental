@@ -1,4 +1,11 @@
 .container {
     margin-left: 350px;
     margin-top: 50px;
-  }  
+  }
+  
+.error{
+    color: red;
+    font-size: 15px;
+    position: relative;
+    display: block;
+}

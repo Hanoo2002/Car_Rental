@@ -15,8 +15,8 @@ use App\Http\Controllers\Admin;
 
 
 Route::get('/Add',[Admin::class,'add']);
+Route::post('/add_car',[Admin::class,'add_car'])->name('add_car');
 // Route::get('/register',[CustomAuthController::class,'register']);
 // Route::post('/register_user',[CustomAuthController::class,'registerUser'])->name('register_user');
-// Route::post('/login_user',[CustomAuthController::class,'loginUser'])->name('login_user');
 // Route::get('/admin_profile',[CustomAuthController::class,'adminProfile']);
 // Route::get('/user_profile',[CustomAuthController::class,'userProfile']);

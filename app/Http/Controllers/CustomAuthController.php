@@ -27,7 +27,7 @@ class CustomAuthController extends Controller
             'password'=>'required|confirmed|min:6|max:12'
         ]);
 
-        // //Insert data into database
+        //Insert data into database
         $usr = new User;
         $usr->name = $request->name;
         $usr->email = $request->email;
@@ -105,7 +105,6 @@ class CustomAuthController extends Controller
     public function adminProfile()
     {
         return view('admin.mainWindow');
-        // return "admin profile page";
     }
 
     public function userProfile()

@@ -10,3 +10,4 @@ Admin
 - [ ] add panel styling 
 - [ ] city dropdown options depend on country
 - [ ] Plate number regex
+- [ ] error msg on comboboxes not showning

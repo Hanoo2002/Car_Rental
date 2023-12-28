@@ -59,7 +59,5 @@
     </form>
 </div>
 
-<script src="/js/validation.js" defer></script>
-
 </body>
 </html>
