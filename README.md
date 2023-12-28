@@ -1,3 +1,12 @@
-- [ ] SVGs ind admin menu
-- [ ] admin menu styling 
-- [ ] admin menu on hover? 
+- [ ] Security (can't access profiles without login [changing in URL])
+
+Admin
+
+- [ ] SVGs in admin menu
+- [ ] admin sidemenu styling 
+- [ ] admin sidemenu on hover? 
+
+- [ ] add color in DB
+- [ ] add panel styling 
+- [ ] city dropdown options depend on country
+- [ ] Plate number regex

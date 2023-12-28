@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\Admin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +14,7 @@ use App\Http\Controllers\CustomAuthController;
 */
 
 
-// Route::get('/',[CustomAuthController::class,'login']);
+Route::get('/Add',[Admin::class,'add']);
 // Route::get('/register',[CustomAuthController::class,'register']);
 // Route::post('/register_user',[CustomAuthController::class,'registerUser'])->name('register_user');
 // Route::post('/login_user',[CustomAuthController::class,'loginUser'])->name('login_user');
