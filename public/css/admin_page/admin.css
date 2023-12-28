@@ -1,0 +1,9 @@
+#dropdown-example {
+    display: none;
+  }
+  
+  /* Show the dropdown when the button is hovered */
+  [data-collapse-toggle="dropdown-example"]:hover + #dropdown-example,
+  #dropdown-example:hover {
+    display: block;
+  }
