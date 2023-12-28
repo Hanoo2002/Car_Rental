@@ -83,8 +83,8 @@ class CustomAuthController extends Controller
             // if(Hash::check($request->password,$admin->password))
             if($request->password==$admin->password)
             {
-                $request->session()->put('LoggedAdmin',$admin->ssn);
-                return redirect('admin_profile');
+                session(['adminAuth' => $admin]);  
+                return $this->adminProfile($request);
             }
             else
             {
@@ -100,12 +100,13 @@ class CustomAuthController extends Controller
 
     public function userLogin(Request $request)
     {
-        $admin = Admin::where('email','=',$request->email)->first();
-        if($admin)
+        $user = Customer::where('email','=',$request->email)->first();
+        if($user)
         {
-            if(($request->password==$admin->password))
-            // if(Hash::check($request->password,$admin->password))
+            if(($request->password==$user->password))
+            // if(Hash::check($request->password,$user->password))
             {
+                session(['auth' => $user]);
                 return $this->userProfile($request);
             }
             else
@@ -119,15 +120,15 @@ class CustomAuthController extends Controller
         }
     }
 
-    public function adminProfile()
-    {
-    return view('admin.Profile');
+    public function adminProfile(Request $request){
+        $admin = session('adminAuth');
+        return view('admin.Profile',['adminAuth'=>$admin]);
     }
 
 
     public function userProfile(Request $request)
     {
-        $user = Admin::where('email', '=', $request->email)->first();
+        $user = session('auth');
         return view('customer.Profile', ['auth' => $user]);
     }
 
