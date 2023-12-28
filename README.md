@@ -15,3 +15,7 @@ Admin
 Admin Registration
 
 - [ ] office id validation not working / make it combobox
+
+Logout
+
+- [ ] preveny back btn logout

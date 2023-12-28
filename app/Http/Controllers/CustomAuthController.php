@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class CustomAuthController extends Controller
 {
@@ -110,5 +111,12 @@ class CustomAuthController extends Controller
     public function userProfile()
     {
         return "user profile page";
+    }
+
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect('/');
     }
 }
