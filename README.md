@@ -4,7 +4,8 @@ Admin
 
 - [ ] SVGs in admin menu
 - [ ] admin sidemenu styling 
-- [ ] admin sidemenu on hover? 
+- [x] admin sidemenu on hover? 
+- [ ] admin sidemenu on click animation 
 
 - [ ] add color in DB
 - [ ] add panel styling 
@@ -18,4 +19,4 @@ Admin Registration
 
 Logout
 
-- [ ] preveny back btn logout
+- [ ] prevent back btn logout
