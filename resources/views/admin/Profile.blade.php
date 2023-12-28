@@ -17,11 +17,10 @@
       <br></br>
       <div>
 
-      <div class="data_item"><p > Name: "Placeholder Fname" "Lname"</p> </div>
-      <div class="data_item"><p > Email: "Placeholder"</p></div>
-      <div class="data_item"><p > ID: ""</p></div>
-      <div class="data_item"><p > Office Id: </p></div>
-      <div class="data_item"><p> Office Data</p></div>
+      <div class="data_item"><p > Name: {{$auth->fname}} {{$auth->lame}}</p> </div>
+      <div class="data_item"><p >Email: {{$auth->email}}</p></div>
+      <div class="data_item"><p > ID: {{$auth->id}}</p></div>
+      <div class="data_item"><p > Office Id: {{$auth->office_id}}</p></div>
       </div>
    </div>
   </body>

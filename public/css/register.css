@@ -24,7 +24,14 @@ body{
     height: 50px;
     margin: 30px 0;
 }
-
+.wrapper .img {
+    display: block;
+    width: 50px;
+    height: 25px;
+    margin-left: 90px;
+    margin-right: 50px;
+    grid-row: 1;
+}
 .input-box input {
     width: 95%;
     height: 100%;
@@ -36,6 +43,10 @@ body{
 }
 .input-box input::placeholder{
     color: black;
+}
+.pay_method {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .input-box i {
     position: absolute;

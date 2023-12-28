@@ -16,11 +16,61 @@
         <h1>Login Registration</h1>
         <div class="input-box">
             <label>
-                <input type="text" placeholder="Name" name="name" id="name" value = "{{old('name')}}">
+                <input type="text" placeholder="First Name" name="f_name" id="f_name" value = "{{old('f_name')}}">
             </label>
             <br>
-            <span class="error" >@error('name')*{{$message}}@enderror</span>
+            <span class="error" >@error('f_name')*{{$message}}@enderror</span>
         </div>
+        <div class="input-box">
+            <label>
+                <input type="text" placeholder="Last Name" name="l_name" id="l_name" value = "{{old('l_name')}}">
+            </label>
+            <br>
+            <span class="error" >@error('l_name')*{{$message}}@enderror</span>
+        </div>
+        <div class="input-box">
+            <label>
+                <input type="text" placeholder="Country" name="country" id="country" value = "{{old('country')}}">
+            </label>
+            <br>
+            <span class="error" >@error('country')*{{$message}}@enderror</span>
+        </div>
+        <div class="input-box">
+            <label>
+                <input type="text" placeholder="City" name="City" id="City" value = "{{old('City')}}">
+            </label>
+            <br>
+            <span class="error" >@error('City')*{{$message}}@enderror</span>
+        </div>
+        <div class="input-box">
+            <label>
+                <input type="text" placeholder="district" name="district" id="district" value = "{{old('district')}}">
+            </label>
+            <br>
+            <span class="error" >@error('district')*{{$message}}@enderror</span>
+        </div>
+        <div class="input-box">
+            <label>
+                <input type="text" placeholder="Phone Number" name="p_number" id="p_number" value = "{{old('p_number')}}">
+            </label>
+            <br>
+            <span class="error" >@error('p_number')*{{$message}}@enderror</span>
+        </div>
+        <div class="input-box">
+            <label>
+                <input type="text" placeholder="Card Number" name="card" id="card" value = "{{old('card')}}">
+            </label>
+            <br>
+            <span class="error" >@error('card')*{{$message}}@enderror</span>
+        </div>
+
+        <div class="pay_method">
+            <img class="img" id="visa_pic" src="https://www.pngall.com/wp-content/uploads/2017/05/Visa-Logo-Free-Download-PNG.png">
+            <input type="radio" id="visa" name="visa" value="visa">
+          <img class="img" id="m_card" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png">
+          <input type="radio" id="m_card" name="m_card" value="m_card">
+        </div>
+
         <div class="input-box">
             <label>
                 <input type="text" placeholder="Email" name="email" id="email" value = "{{old('email')}}">
