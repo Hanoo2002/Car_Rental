@@ -105,7 +105,7 @@ class CustomAuthController extends Controller
 
     public function adminProfile()
     {
-        return view('admin.mainWindow');
+        return view('admin.Profile');
     }
 
     public function userProfile()

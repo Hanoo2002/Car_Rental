@@ -1,9 +1,12 @@
-#dropdown-example {
-    display: none;
-  }
-  
-  /* Show the dropdown when the button is hovered */
-  [data-collapse-toggle="dropdown-example"]:hover + #dropdown-example,
-  #dropdown-example:hover {
-    display: block;
-  }
+ul#dropdown1 {
+  display: none;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+
+ul#dropdown1:not(.hidden) {
+  display: block;
+  opacity: 1;
+  transition-duration: 1s;
+}
