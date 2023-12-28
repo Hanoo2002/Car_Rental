@@ -36,18 +36,15 @@
             <label for="Customer" class="user">Customer</label>
             <br><br>
 
-            <?php if(isset($_SESSION['error'])): ?>
-                <div>
-                    <?php
-                        echo $_SESSION["error"];
-                        unset($_SESSION["error"]);
-                    ?>
-                </div>
-            <?php endif; ?>
-
+            
             <button name="submit" type="submit" class="btn">Login</button>
             <div class="register-link">
                 <p>Don't have an account? <a href="register">Register</a></p>
+            </div> @if(session('success')) <div class="success-message" style="color: green;">
+          {{ session('success') }}
+        </div> @elseif(session('fail')) <div class="fail-message" style="color: red;">
+          {{ session('fail') }}
+        </div> @endif 
             </div>
         </form>
     </div>
