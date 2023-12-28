@@ -63,24 +63,25 @@ class CustomAuthController extends Controller
 
     public function adminLogin(Request $request)
     {
-        $user = User::where('email','=',$request->email)->first();
-        if($user)
-        {
-            if(Hash::check($request->password,$user->password))
-            {
-                $request->session()->put('LoggedUser',$user->id);
-                session(['user' => $user]);
-                return redirect('admin_profile');
-            }
-            else
-            {
-                return back()->with('fail','Invalid password');
-            }
-        }
-        else
-        {
-            return back()->with('fail','No account found for this email');
-        }
+        // $user = User::where('email','=',$request->email)->first();
+        // if($user)
+        // {
+        //     if(Hash::check($request->password,$user->password))
+        //     {
+        //         $request->session()->put('LoggedUser',$user->id);
+        //         session(['user' => $user]);
+        //         return redirect('admin_profile');
+        //     }
+        //     else
+        //     {
+        //         return back()->with('fail','Invalid password');
+        //     }
+        // }
+        // else
+        // {
+        //     return back()->with('fail','No account found for this email');
+        // }
+        return redirect('admin_profile');
     }
 
     public function userLogin(Request $request)
