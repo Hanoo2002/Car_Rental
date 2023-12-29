@@ -15,3 +15,4 @@ use App\Http\Controllers\Customer_controller;
 
 
 Route::get('/View_customer',[Customer_controller::class,'view_tab']);
+Route::get('/rent',[Customer_controller::class,'rent']);
