@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\admin;
+use App\Models\Customer;
 use Hash;
 use Session;
 use App\Models\Car;
@@ -18,6 +19,12 @@ class Admin_controller extends Controller
     public function update()
     {
         return view('admin.Update');
+    }
+
+    public function users()
+    {
+        $users = Customer::all();
+        return view('admin.Users',['users'=>$users]);
     }
 
     public function add_car(Request $request)
@@ -82,4 +89,32 @@ class Admin_controller extends Controller
             return back()->with('fail','Something went wrong');
         }        
     }
+
+    public function search(Request $request)
+{
+    $searchQuery = $request->input('search');
+
+    $query = Customer::query();
+
+    if ($searchQuery) {
+        $query->where(function ($subQuery) use ($searchQuery) {
+            $subQuery->where('fname', 'LIKE', "%$searchQuery%")
+                ->orWhere('lname', 'LIKE', "%$searchQuery%")
+                ->orWhere('email', 'LIKE', "%$searchQuery%");
+            // Add more fields as needed for the search
+        });
+    }
+    
+    $users = $query->get();
+
+    return view('admin.Users', compact('users'));
 }
+
+
+    public function originalPage(Request $request)
+    {
+        return $this->users();
+    }
+}
+
+
