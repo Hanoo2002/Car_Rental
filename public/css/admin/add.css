@@ -75,7 +75,11 @@
   font-size: 20px;
   color: darkseagreen;
   font-weight: bold;
+}
 
+.btn:hover {
+  background-color: darkseagreen;
+  color: white;
 }
 
 
