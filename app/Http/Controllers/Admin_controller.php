@@ -25,7 +25,7 @@ class Admin_controller extends Controller
     {
         $users = Customer::all();
         return view('admin.Users',['users'=>$users]);
-    }
+    }   
 
     public function add_car(Request $request)
     {   
@@ -95,8 +95,12 @@ class Admin_controller extends Controller
         }        
     }
 
-    public function search(Request $request)
-{
+    public function originalPage(Request $request)
+    {
+        return $this->users();
+    }
+
+    public function search(Request $request){
     $searchQuery = $request->input('search');
 
     $query = Customer::query();
@@ -116,13 +120,56 @@ class Admin_controller extends Controller
     $users = $query->get();
 
     return view('admin.Users', compact('users'));
-}
-
-
-    public function originalPage(Request $request)
-    {
-        return $this->users();
     }
+
+    public function search_car_admin(Request $request){
+        $conditions = [];
+
+        $office = $request->query('office');
+        if (!empty($office)) {
+            $conditions['office_id'] = $office;
+        }
+
+        $color = $request->query('color');
+        if (!empty($color)) {
+            $conditions['color'] = $color;
+        }
+
+        $year = $request->query('year');
+        if (!empty($year)) {
+            $conditions['year'] = $year;
+        }
+
+        $model = $request->query('model');
+        if (!empty($model)) {
+            $conditions['model'] = $model;
+        }
+
+        // $time = $request->query('time');
+        // if (!empty($time)) {
+        //     $conditions['time'] = $time;
+        // }
+
+        // $type = $request->query('type');
+        // if (!empty($type)) {
+        //     $conditions['type'] = $type;
+        // }
+
+        // $plate = $request->query('plate');
+        // if (!empty($plate)) {
+        //     $conditions['plate'] = $plate;
+        // }
+
+        
+        $results = Car::where($conditions)->get();
+        return view('admin.ViewCars_advancedSearch', compact('results'));
+    }
+
+    public function originalPage_car(Request $request)
+    {
+        return view("admin.View");
+    }
+    
 }
 
 

@@ -26,3 +26,6 @@ Route::post('/register_admin',[Admin_controller::class,'register_admin'])->name(
 Route::get('/search_user', [Admin_controller::class, 'search'])->name('search_user');
 Route::get('/original_page', [Admin_controller::class, 'originalPage'])->name('original_page');
 Route::get('/View',[Admin_controller::class,'view_tab']);
+
+Route::get('/search_car',[Admin_controller::class,'search_car_admin'])->name('search_car');
+Route::get('/back_car', [Admin_controller::class, 'originalPage_car'])->name('back_car');
