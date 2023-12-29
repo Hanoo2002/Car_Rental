@@ -15,6 +15,11 @@ class Admin_controller extends Controller
         return view('admin.Add');
     }
 
+    public function update()
+    {
+        return view('admin.Update');
+    }
+
     public function add_car(Request $request)
     {   
         $request->validate([
