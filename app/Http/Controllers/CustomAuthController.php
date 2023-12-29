@@ -103,16 +103,16 @@ class CustomAuthController extends Controller
         $user = Customer::where('email','=',$request->email)->first();
         if($user)
         {
-            if(($request->password==$user->password))
+            //if(($request->password==$user->password))
             // if(Hash::check($request->password,$user->password))
             {
                 session(['auth' => $user]);
                 return $this->userProfile($request);
             }
-            else
-            {
-                return back()->with('fail','Invalid password');
-            }
+           //// else
+           // {
+              //  return back()->with('fail','Invalid password');
+           // }
         }
         else
         {
