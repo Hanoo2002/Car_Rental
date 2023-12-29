@@ -59,6 +59,11 @@ class Admin_controller extends Controller
         return view("admin.Register");
     }
 
+    public function view_tab()
+    {
+        return view("admin.View");
+    }
+
     public function register_admin(Request $request)
     {
         

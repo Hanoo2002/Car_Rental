@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         @vite('resources/css/app.css')
         <title>Customer Profile</title>
-        <link rel="stylesheet" href="{{ asset('css/customer/profile.css') }}">
+        <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     </head>
 <body>
     <h1>Customer Profile</h1>

@@ -3,19 +3,14 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use App\Models\Office;
+use Faker\Generator as Faker;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Car>
  */
-class UserFactory extends Factory
+class CarFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
-
     /**
      * Define the model's default state.
      *
@@ -23,22 +18,16 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
-        ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
+        $factory->define(Car::class, function (Faker $faker) {
+            return [
+                'year' => $faker->numberBetween(1990, 2023),
+                'model'=> $faker->randomElement(["Mazda" , "Toyota" , "Mercedes" , "Tesla" , "BMW" , "Lada"]),
+                'color' => $faker->safeColorName(),
+                'office_id' => function () {
+                    // Assuming you have an Office model and want to associate cars with offices
+                    return App\Models\Office::inRandomOrder()->first()->office_id;
+                },
+            ];
+        });
     }
 }
