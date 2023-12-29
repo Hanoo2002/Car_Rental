@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\admin;
 use Hash;
 use Session;
 
-class Admin extends Controller
+class Admin_controller extends Controller
 {
     public function add()
     {
@@ -49,21 +49,25 @@ class Admin extends Controller
 
     public function register_admin(Request $request)
     {
+        
         $request->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users',
-            'officeID'=>'required',
-            'password'=>'required|confirmed|min:6|max:12'
+            'f_name'=>'required',
+            'l_name'=>'required',
+            'officeID'=>'required',            
+            'email'=>'required|email',
+            'password'=>'required|confirmed|min:6|max:12',
+            'ssn'=>'required'
         ]);
 
         //Insert data into database
-        $usr = new User;
-        $usr->name = $request->name;
-        $usr->email = $request->email;
-        $usr->officeID = $request->officeID;
-        $usr->password = bcrypt($request->password);
-        $res = $usr->save();
-
+        $admin = new admin;
+        $admin->fname = $request->f_name;
+        $admin->lname = $request->l_name;
+        $admin->office_id = $request->officeID;
+        $admin->email = $request->email;
+        $admin->password = bcrypt($request->password);
+        $admin->ssn = $request->ssn;
+        $res = $admin->save();
         if($res)
         {
             return back()->with('success','You have registered successfully');
