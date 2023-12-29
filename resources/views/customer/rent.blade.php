@@ -30,25 +30,17 @@
                <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th>District</th>
-                        <th>Phone Number</th>
-                        <th>Email</th>
+                        <th>Model</th>
+                        <th>Color</th>
+                        <th>year</th>
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach($users as $user)
+                     @foreach($cars as $car)
                      <tr>
-                        <td>{{$user['fname']}}</td>
-                        <td>{{$user['lname']}}</td>
-                        <td>{{$user['country']}}</td>
-                        <td>{{$user['city']}}</td>
-                        <td>{{$user['district']}}</td>
-                        <td>{{$user['phone_number']}}</td>
-                        <td>{{$user['email']}}</td>
+                        <td>{{$car['model']}}</td>
+                        <td>{{$car['color']}}</td>
+                        <td>{{$car['year']}}</td>
                      </tr>
                      @endforeach
                   </tbody>
