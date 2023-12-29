@@ -15,7 +15,7 @@
     @include('components.sidebar')
 </div>
 <div class="wrapper">
-    <form action="register_user" method="POST" name="form">
+    <form action="register_admin" method="POST" name="form">
         @csrf
         <h1>Admin Registration</h1>
         <div class="input-box">
@@ -68,12 +68,12 @@
             <span class="error" >@error('password_confirmation')*{{$message}}@enderror</span>
         </div>
 
-        @if (session()->has('success'))
-    <div class="alert alert-success">
-        <br>
-        {{ session('success') }}
-    </div>
-    @endif
+        @if(session('success')) <div class="success-message" style="color: green;">
+          {{ session('success') }}
+        </div> @elseif(session('fail')) <div class="fail-message" style="color: red;">
+          {{ session('fail') }}
+        </div> @endif 
+
 
         <button name="submit" type="submit" class="btn">Register</button>
         <div class="register-link">

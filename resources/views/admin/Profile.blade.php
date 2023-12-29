@@ -17,10 +17,10 @@
     </div>
       <br></br>
       <div>
-      <div class="data_item"><p > Name: Hassan Tamer</p> </div>
-      <div class="data_item"><p >Email: ha@gmail.com</p></div>
-      <div class="data_item"><p > ID: 7405</p></div>
-      <div class="data_item"><p > Office Id: 22A </p></div>
+      <div class="data_item"><p > Name: {{$adminAuth->fname}} {{$adminAuth->lname}}</p> </div>
+      <div class="data_item"><p >Email: {{$adminAuth->email}}</p></div>
+      <div class="data_item"><p > SSN: {{$adminAuth->ssn}}</p></div>
+      <div class="data_item"><p > Office Id: {{$adminAuth->office_id}} </p></div>
       </div>
    </div>
   </body>

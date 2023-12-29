@@ -9,18 +9,19 @@
         <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     </head>
 <body>
-<div class = "container" >
-    <h1 class="title"> Admin Data</h1>
-    
-      @include('components.sidebar')
-      <br></br>
-      <div>
-
-      <div class="data_item"><p > Name: </p> </div>
-      <div class="data_item"><p >Email: </p></div>
-      <div class="data_item"><p >  Country</p></div>
-      <div class="data_item"><p > City</p></div>
-      </div>
-   </div>
+    <h1>Customer Profile</h1>
+    <div>
+      @include('components.customer_sidebar')
+    </div>
+    <div>
+        <h1>name: {{$auth->fname}} {{$auth->lname}}</h1>        
+        <h1>email: {{$auth->email}}</h1>        
+        <h1>ssn: {{$auth->ssn}}</h1>        
+        <h1>country: {{$auth->country}}</h1>        
+        <h1>city: {{$auth->city}}</h1>        
+        <h1>district: {{$auth->district}}</h1>        
+        <h1>phone numbr: {{$auth->phone_number}}</h1>        
+        <h1>email: {{$auth->email}}</h1>        
+    </div>
 </body>
 </html>
