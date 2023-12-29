@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Admin;
+use App\Models\admin;
 use App\Models\Customer;
 use Hash;
 use Session;
@@ -77,7 +77,7 @@ class CustomAuthController extends Controller
     }
 
     public function adminLogin(Request $request){
-        $admin = Admin::where('email','=',$request->email)->first();
+        $admin = admin::where('email','=',$request->email)->first();
         if($admin)
         {
             if(Hash::check($request->password,$admin->password))
