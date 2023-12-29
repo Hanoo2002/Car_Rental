@@ -25,4 +25,4 @@ Route::post('/register_admin',[Admin_controller::class,'register_admin'])->name(
 
 Route::get('/search_user', [Admin_controller::class, 'search'])->name('search_user');
 Route::get('/original_page', [Admin_controller::class, 'originalPage'])->name('original_page');
-//Route::get('/View',[Admin_controller::class,'view']);
+Route::get('/View',[Admin_controller::class,'view_tab']);

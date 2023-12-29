@@ -7,10 +7,11 @@
     <meta name="author" content="colorlib.com">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
     <link href="{{ asset('css/admin/view.css') }}" rel="stylesheet">
+    @vite('resources/css/app.css')
 </head>
 
 <body>
-    @include('components.customer_sidebar')
+    @include('components.sidebar')
     <div class="s007">
         <form>
             <div class="inner-form">
