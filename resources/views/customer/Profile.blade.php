@@ -13,15 +13,16 @@
     <div>
       @include('components.customer_sidebar')
     </div>
+    <br> </br>
     <div>
-        <h1>name: {{$auth->fname}} {{$auth->lname}}</h1>        
-        <h1>email: {{$auth->email}}</h1>        
-        <h1>ssn: {{$auth->ssn}}</h1>        
-        <h1>country: {{$auth->country}}</h1>        
-        <h1>city: {{$auth->city}}</h1>        
-        <h1>district: {{$auth->district}}</h1>        
-        <h1>phone numbr: {{$auth->phone_number}}</h1>        
-        <h1>email: {{$auth->email}}</h1>        
+        <div class="data_item"><p > Name: {{$auth->fname}} {{$auth->lname}}</p> </div>
+        <div class="data_item"><p >Email: {{$auth->email}}</p></div>
+        <div class="data_item"><p > SSN: {{$auth->ssn}}</p></div>
+        <div class="data_item"><p > country: {{$auth->country}} </p></div>
+        <div class="data_item"><p > city: {{$auth->city}} </p></div>
+        <div class="data_item"><p > district: {{$auth->district}} </p></div>
+        <div class="data_item"><p > email: {{$auth->email}} </p></div>
+        <div class="data_item"><p > phone number: {{$auth->phone_number}} </p></div>
     </div>
 </body>
 </html>

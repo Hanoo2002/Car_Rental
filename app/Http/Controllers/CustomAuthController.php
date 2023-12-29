@@ -80,8 +80,8 @@ class CustomAuthController extends Controller
         $admin = Admin::where('email','=',$request->email)->first();
         if($admin)
         {
-            // if(Hash::check($request->password,$admin->password))
-            if($request->password==$admin->password)
+            if(Hash::check($request->password,$admin->password))
+            //if($request->password==$admin->password)
             {
                 session(['adminAuth' => $admin]);  
                 return $this->adminProfile($request);
