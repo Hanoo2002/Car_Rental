@@ -29,3 +29,6 @@ Route::get('/View',[Admin_controller::class,'view_tab']);
 
 Route::get('/search_car',[Admin_controller::class,'search_car_admin'])->name('search_car');
 Route::get('/back_car', [Admin_controller::class, 'originalPage_car'])->name('back_car');
+
+Route::post('/update_car',[Admin_controller::class,'update_car'])->name('update_car');
+Route::post('/delete_car',[Admin_controller::class,'delete_car'])->name('delete_car');

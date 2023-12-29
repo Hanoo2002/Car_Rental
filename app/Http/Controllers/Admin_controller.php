@@ -8,6 +8,7 @@ use App\Models\Customer;
 use Hash;
 use Session;
 use App\Models\Car;
+use App\Models\car_status;
 
 class Admin_controller extends Controller
 {
@@ -20,6 +21,55 @@ class Admin_controller extends Controller
     {
         return view('admin.Update');
     }
+
+    public function update_car(Request $request){
+        $request->validate([
+            'plateNumber' => 'required',
+            'status' => 'required'
+        ]);
+    
+        // $car = Car::where('plate_number', $request->input('plateNumber'))->first();
+        $car = Car::where('car_id', $request->input('plateNumber'))->first();
+    
+        if ($car) {
+            $carStatus = car_status::updateOrCreate(
+                ['car_id' => $car->car_id],
+                ['status' => $request->input('status')],
+                ['updated_at' => now()]
+            );
+    
+            if ($carStatus) {
+                $msg = "*Status updated successfully for car with plate number: " . $request->input('plateNumber');
+                return back()->with('success', $msg);
+            } else {
+                return back()->with('fail', $msg);
+                $msg = "*Failed to update status.";
+            }
+        } else {
+            $msg = "*Car with plate number " . $request->input('plateNumber') . " not found.";
+            return back()->with('fail', $msg);
+        }
+    }
+
+    public function delete_car(Request $request){
+        $request->validate([
+            'plateNumber' => 'required'
+        ]);
+    
+        // $car = Car::where('plate_number', $request->input('plateNumber'))->first();
+        $car = Car::where('car_id', $request->input('plateNumber'))->first();
+    
+        if ($car) {
+            $car->delete(); // Delete the car record
+    
+            $msg = "*Car with plate number: " . $request->input('plateNumber') . " deleted successfully.";
+            return back()->with('success', $msg);
+        } else {
+            $msg = "*Car with plate number " . $request->input('plateNumber') . " not found.";
+            return back()->with('fail', $msg);
+        }
+    }
+    
 
     public function users()
     {
