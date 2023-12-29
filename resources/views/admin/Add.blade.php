@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>Add Car</title>
    <link href="{{ asset('css/admin/sidebar.css') }}" rel="stylesheet">
    <link href="{{ asset('css/admin/add.css') }}" rel="stylesheet">
    @vite('resources/css/app.css')
@@ -43,19 +43,19 @@
          <input class="in_field" type="text" id="model" name="model" value = "{{old('model')}}" ><br><br>
          <span class="error" >@error('model') {{$message}}@enderror</span>
 
-         <label class = "in_type" for="country">Office ID:</label>
-         <select class="dropdown-container" id="country" name="country" value = "{{old('country')}}">
-            <option class = "dropdown-select" value="" selected disabled>Select Office</option>
-            <option class = "dropdown-select" value="USA">USA</option>
-            <option class = "dropdown-select" value="Canada">Canada</option>
-            <option class = "dropdown-select" value="UK">UK</option>
-            <option class = "dropdown-select" value="Germany">Germany</option>
-            <option class = "dropdown-select" value="Japan">Japan</option>
-         <span class="error" >@error('country')*{{$message}} <br> @enderror</span>
+         <label class="in_type" for="office_id">Office ID:</label>
+         <input class="in_field" type="text" id="office_id" name="office_id" value = "{{old('office_id')}}" ><br><br>
             
          </select><br><br>
 
          <input class="btn" type="submit" value="Add Car">
+
+         @if(session('success')) <div class="success-message" style="color: green;">
+          {{ session('success') }}
+        </div> @elseif(session('fail')) <div class="fail-message" style="color: red;">
+          {{ session('fail') }}
+        </div> @endif 
+
       </form>
    </div>
    

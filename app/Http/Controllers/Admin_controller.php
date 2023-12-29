@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\admin;
 use Hash;
 use Session;
+use App\Models\Car;
 
 class Admin_controller extends Controller
 {
@@ -14,32 +15,36 @@ class Admin_controller extends Controller
         return view('admin.Add');
     }
 
-    public function add_car(Request $request)
+    public function update()
     {
+        return view('admin.Update');
+    }
+
+    public function add_car(Request $request)
+    {   
         $request->validate([
-            'plateNumber'=>'required',
+            // 'plateNumber'=>'required',
             'color'=>'required',
             'year'=>'required',
             'model'=>'required',
-            'country'=>'required'
+            'office_id'=>'required'
         ]);
 
-        // $car = new Car;
+        $car = new Car;
         // $car->plateNumber = $request->plateNumber;
-        // $car->color = $request->color;
-        // $car->year = $request->year;
-        // $car->model = $request->model;
-        // $car->country = $request->country;
-        // $res = $car->save();
-        // if($res)
-        // {
-        //     return back()->with('success','You have added a car successfully');
-        // }
-        // else
-        // {
-        //     return back()->with('fail','Something went wrong');
-        // }
-
+        $car->color = $request->color;
+        $car->year = $request->year;
+        $car->model = $request->model;
+        $car->office_id = $request->office_id;
+        $res = $car->save();
+        if($res)
+        {
+            return back()->with('success','You have added a car successfully');
+        }
+        else
+        {
+            return back()->with('fail','Something went wrong');
+        }
     }
 
     public function register()
@@ -53,8 +58,8 @@ class Admin_controller extends Controller
         $request->validate([
             'f_name'=>'required',
             'l_name'=>'required',
-            'officeID'=>'required',            
-            'email'=>'required|email',
+            'officeID'=>'required',
+            'email'=>'required|email|unique:admins',
             'password'=>'required|confirmed|min:6|max:12',
             'ssn'=>'required'
         ]);

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin_controller;
 
 
 Route::get('/Add',[Admin_controller::class,'add']);
+Route::get('/Update',[Admin_controller::class,'update']);
 Route::post('/add_car',[Admin_controller::class,'add_car'])->name('add_car');
 // the register btn
 Route::get('/register_admin_btn',[Admin_controller::class,'register']);
