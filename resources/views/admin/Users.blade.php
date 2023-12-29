@@ -16,7 +16,7 @@
     <div class="container">
         <form action="search_user" method="GET">
         @csrf
-            <input type="text" name="search" placeholder="Search users" required>
+            <input type="text" name="search" placeholder="Search users" required id="searchbar">
             <button type="submit"><i class="fa fa-search"></i></button>
             <a href='original_page'><button type="button" class="reset-button">Reset</button></a>
 

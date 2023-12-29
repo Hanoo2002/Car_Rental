@@ -105,8 +105,11 @@ class Admin_controller extends Controller
         $query->where(function ($subQuery) use ($searchQuery) {
             $subQuery->where('fname', 'LIKE', "%$searchQuery%")
                 ->orWhere('lname', 'LIKE', "%$searchQuery%")
-                ->orWhere('email', 'LIKE', "%$searchQuery%");
-            // Add more fields as needed for the search
+                ->orWhere('email', 'LIKE', "%$searchQuery%")
+                ->orWhere('phone_number', 'LIKE', "%$searchQuery%")
+                ->orWhere('district', 'LIKE', "%$searchQuery%")
+                ->orWhere('city', 'LIKE', "%$searchQuery%")
+                ->orWhere('country', 'LIKE', "%$searchQuery%");
         });
     }
     
