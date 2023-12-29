@@ -15,6 +15,17 @@
       @include('components.customer_sidebar')
    </div>
 
+   <div class ="view">
+      <div class="wrapper1">
+         <h1>Available Cars</h1>
+      </div>
+      <div class="wrapper2">
+            <h1>search by</h1>
+      </div>
+      </div>
+
+
+
 
 
 </body>

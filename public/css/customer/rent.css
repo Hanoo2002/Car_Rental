@@ -1,0 +1,52 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.view{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+}
+.wrapper1{
+    width: 450px;
+    margin-left: 350px;
+    height: 500px;
+    background: beige;
+    border-radius: 50px;
+    color: black;
+    padding: 30px 40px;
+}
+
+.wrapper1 h1 {
+    font-size: 25px;
+    text-align: center;
+    font-family: Rockwell, serif;
+
+}
+
+.wrapper2{
+    width: 450px;
+    height: 500px;
+    background: beige;
+    border-radius: 50px;
+    color: black;
+    padding: 30px 40px;
+}
+
+.wrapper2 h1 {
+    font-size: 25px;
+    text-align: center;
+    font-family: Rockwell, serif;
+
+}
+.wrapper2 .combobox{
+    position: relative;
+    text-align: right;
+    width: 90%;
+    height: 25px;
+    margin:10px 0
+}
+
+
