@@ -13,9 +13,6 @@ use App\Http\Controllers\Admin_controller;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-
     Route::get('/Add', [Admin_controller::class, 'add']);
     Route::get('/Update', [Admin_controller::class, 'update']);
     Route::get('/Users', [Admin_controller::class, 'users']);
