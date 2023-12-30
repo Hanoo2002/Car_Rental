@@ -28,25 +28,20 @@ class Customer_controller extends Controller
 
         // TODO query to rent car
 
-        $updateQuery = "UPDATE car_statuses
-        SET status = 'Booked'
-        WHERE car_statuses.car_id = :id";
+        $updateQuery = "UPDATE car
+        SET status = 'busy'
+        WHERE car.plate_number = :id";
 
         DB::update($updateQuery, array_filter([
 
             "id" => $car,
         ]));
 
-        $column1Value = 'value1';
-        $column2Value = 'value2';
-        $column3Value = 'value3';
-        $column4Value = 'value4';
-
         // Build the SQL query string
-        $sql = "INSERT INTO procedures (cust_id, car_id ,date, procedure) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO car_status (plate_number, status ,date) VALUES (?, ?, ?)";
 
         // Perform the insert
-        DB::insert($sql, [auth()->cust_id(), $car, Carbon::now(), "Rent"]);
+        DB::insert($sql, [ $car, 'busy' ,Carbon::now()]);
 
         session()->flash("success", "Car rented successfully");
 
@@ -55,14 +50,16 @@ class Customer_controller extends Controller
 
     public function rent(Request $request)
     {
-        $office = $request->query('office');
+        //$office = $request->query('office');
         $color = $request->query('color');
         $year = $request->query('year');
         $model = $request->query('model');
         $district = $request->query('district');
+        $city = $request->query('city');
+        $country = $request->query('country');
 
-        $query = "Select * from cars join car_statuses on cars.car_id = car_statuses.car_id ";
-        $query .= " where car_statuses.status = 'available'";
+        $query = "Select * from car join office on car.office_id = office.office_id";
+        $query .= " where current_status = 'available'";
 
         if ($model) {
             $query .= " and model LIKE :model";
@@ -75,16 +72,29 @@ class Customer_controller extends Controller
         if ($year) {
             $query .= " and year = :year";
         }
-
-        if ($office) {
-            $query .= " and office_id LIKE :office";
+        if ($district) {
+            $query .= " and district LIKE :district";
         }
+        if ($country) {
+            $query .= " and country LIKE :country";
+        }
+        if ($city) {
+            $query .= " and city LIKE :city";
+        }
+
+
+        // if ($office) {
+        //     $query .= " and office_id LIKE :office";
+        // }
 
         $cars = DB::select($query, array_filter([
             "model" => ($model) ? ($model . "%") : null,
             "color" => ($color) ? ($color . "%") : null,
             "year" => $year,
-            "office" => $office,
+            "district" => ($district) ? ($district . "%") : null,
+            "country" => ($country) ? ($country . "%") : null,
+            "city" => ($city) ? ($city . "%") : null,
+            //"office" => $office,
         ]));
 
 

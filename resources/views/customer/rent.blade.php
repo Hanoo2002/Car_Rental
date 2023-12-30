@@ -56,6 +56,8 @@
                         <th>Color</th>
                         <th>year</th>
                         <th>District</th>
+                        <th>Country</th>
+                        <th>City</th>
                      </tr>
                      </thead>
                      <tbody>
@@ -66,7 +68,9 @@
                            <td>{{ $car->model }}</td>
                            <td>{{ $car->color }}</td>
                            <td>{{ $car->year }}</td>
-                           <!-- <td>{{ $car->district }}</td>-->
+                           <td>{{ $car->district }}</td>
+                           <td>{{ $car->country }}</td>
+                           <td>{{ $car->city}}</td>
                         </tr>
                      @endforeach
                      </tbody>
