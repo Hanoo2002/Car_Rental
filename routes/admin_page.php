@@ -14,7 +14,6 @@ use App\Http\Controllers\Admin_controller;
 |
 */
 
-Route::prefix("/admin")->group(function () {
 
 
     Route::get('/Add', [Admin_controller::class, 'add']);
@@ -35,4 +34,3 @@ Route::prefix("/admin")->group(function () {
 
     Route::post('/update_car', [Admin_controller::class, 'update_car'])->name('update_car');
     Route::post('/delete_car', [Admin_controller::class, 'delete_car'])->name('delete_car');
-});
