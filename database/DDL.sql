@@ -42,7 +42,7 @@ CREATE TABLE customer (
 CREATE TABLE rent (
     SSN VARCHAR(20),
     plate_number VARCHAR(20),
-    procedure_id INT PRIMARY KEY,
+    procedure_id VARCHAR(20) PRIMARY KEY,
     start_date DATE,
     end_date DATE,
     amount_paid DECIMAL(10, 2),
@@ -54,7 +54,7 @@ CREATE TABLE rent (
 CREATE TABLE pick_up (
     SSN VARCHAR(20),
     plate_number VARCHAR(20),
-    procedure_id INT PRIMARY KEY,
+    procedure_id VARCHAR(20) PRIMARY KEY,
     pickup_hour TIME,
     drop_hour TIME,
     amount_paid DECIMAL(10, 2),
