@@ -9,6 +9,29 @@
    <link href="{{ asset('css/customer/rent.css') }}" rel="stylesheet">
    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
    @vite('resources/css/app.css')
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      table {
+         font-family: Arial, sans-serif;
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      th, td {
+         border: 1px solid #dddddd;
+         text-align: left;
+         padding: 8px;
+      }
+
+      tr:nth-child(even) {
+         background-color: #f2f2f2;
+      }
+
+      input[type="radio"] {
+         margin: 0;
+      }
+   </style>
 
 </head>
 
@@ -27,12 +50,21 @@
                   <table class="table table-bordered">
                      <thead>
                      <tr>
+                        <th>Select</th>
                         <th>Model</th>
                         <th>Color</th>
                         <th>year</th>
                      </tr>
                      </thead>
-
+                     <tbody>
+                     @foreach($cars as $car)
+                        <tr>
+                           <td>{{ $car->model }}</td>
+                           <td>{{ $car->color }}</td>
+                           <td>{{ $car->year }}</td>
+                        </tr>
+                     @endforeach
+                     </tbody>
                   </table>
                </div>
             </div>
@@ -42,9 +74,8 @@
       </div>
       <div class="wrapper2">
          <h1>search by</h1>
-         <form action="search_user" method="GET">
-            @csrf
-            <input type="text" name="search" placeholder="Search users" required id="searchbar">
+         <form action="rent" method="GET">
+            <input type="text" name="search" placeholder="Search cars" required id="searchbar">
             <button type="submit"><i class="fa fa-search"></i></button>
             <a href='original_page'><button type="button" class="reset-button">Reset</button></a>
 
@@ -52,7 +83,6 @@
 
       </div>
    </div>
-
 
 
 
