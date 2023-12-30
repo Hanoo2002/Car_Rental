@@ -34,14 +34,14 @@
         </div>
         <div class="input-box">
             <label>
-                <input type="text" placeholder="Office ID" name="officeID" id="officeID">
+                <input type="text" placeholder="Office ID" name="officeID" id="officeID" value = "{{old('officeID')}}">
             </label>
             <br>
             <span class="error" >@error('officeID')*{{$message}}@enderror</span>
         </div>
         <div class="input-box">
             <label>
-                <input type="text" placeholder="ssn" name="ssn" id="ssn">
+                <input type="text" placeholder="ssn" name="ssn" id="ssn" value = "{{old('ssn')}}">
             </label>
             <br>
             <span class="error" >@error('ssn')*{{$message}}@enderror</span>

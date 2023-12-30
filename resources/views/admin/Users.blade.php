@@ -28,9 +28,7 @@
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Country</th>
-                            <th>City</th>
-                            <th>District</th>
+                            <th>SSN</th>
                             <th>Phone Number</th>
                             <th>Email</th>
                         </tr>
@@ -38,13 +36,11 @@
                     <tbody>
                         @foreach($users as $user)
                         <tr>
-                            <td>{{$user['fname']}}</td>
-                            <td>{{$user['lname']}}</td>
-                            <td>{{$user['country']}}</td>
-                            <td>{{$user['city']}}</td>
-                            <td>{{$user['district']}}</td>
-                            <td>{{$user['phone_number']}}</td>
-                            <td>{{$user['email']}}</td>
+                            <td>{{$user->fname}}</td>
+                            <td>{{$user->lname}}</td>
+                            <td>{{$user->SSN}}
+                            <td>{{$user->phone_number}}</td>
+                            <td>{{$user->email}}</td>
                         </tr>
                         @endforeach
                     </tbody>

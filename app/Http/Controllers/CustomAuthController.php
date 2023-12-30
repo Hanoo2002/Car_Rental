@@ -28,9 +28,6 @@ class CustomAuthController extends Controller
         $request->validate([
             'f_name'=>'required',
             'l_name'=>'required',
-            'country'=>'required',
-            'City'=>'required',
-            'district'=>'required',
             'p_number'=>'required',
             'card'=>'required',
             'email'=>'required|email|unique:customers',
