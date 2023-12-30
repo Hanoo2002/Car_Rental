@@ -21,6 +21,18 @@ class Customer_controller extends Controller
         return view("customer.View");
     }
 
+    public function rentCar($car)
+    {
+        dd($car, auth()->id());
+
+        // TODO query to rent car
+
+        // Return with success message
+        session()->flash("success", "Car rented successfully");
+
+        return back();
+    }
+
     public function rent(Request $request)
     {
         $office = $request->query('office');
@@ -47,49 +59,24 @@ class Customer_controller extends Controller
             $query .= " and office_id = :office";
         }
 
-        $cars = DB::select($query, collect([
-            "model" => $model . "%",
+        $cars = DB::select($query, array_filter([
+            "model" => ($model) ? ($model . "%") : null,
             "color" => $color,
             "year" => $year,
             "office" => $office,
-        ])->filter()->all());
-
-        dd($query, $cars);
+        ]));
 
 
-        $cars = DB::table('cars')
-            ->join('car_statuses', 'cars.car_id', '=', 'car_statuses.car_id')
-            ->where('car_statuses.status', '=', 'available')
-            ->where(function ($query) use ($color, $model, $year, $office) {
-                $query
-                    ->when(
-                        $color,
-                        fn($q) => $q->where('cars.color', '=', $color)
-                    )
-                    ->when(
-                        $model,
-                        fn($q) => $q->where('cars.model', '=', $model)
-                    )
-                    ->when(
-                        $year,
-                        fn($q) => $q->where('cars.year', '=', $year)
-                    )
-                    ->when(
-                        $office,
-                        fn($q) => $q->where('cars.office_id', '=', $office)
-                    );
-            })
-            ->get();
         return view("customer.rent", compact('cars'));
     }
 
-    public function search_car(Request $request)
-    {
-
-        //return view('customer.viewCars_cust', compact('results'));
-
-
-    }
+//    public function search_car(Request $request)
+//    {
+//
+//        //return view('customer.viewCars_cust', compact('results'));
+//
+//
+//    }
 
 }
 

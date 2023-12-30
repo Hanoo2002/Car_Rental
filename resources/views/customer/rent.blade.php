@@ -59,6 +59,7 @@
                      <tbody>
                      @foreach($cars as $car)
                         <tr>
+                           <td><a href="{{ '/rent/' . $car->car_id }}">Rent</a></td>
                            <td>{{ $car->model }}</td>
                            <td>{{ $car->color }}</td>
                            <td>{{ $car->year }}</td>
@@ -75,7 +76,7 @@
       <div class="wrapper2">
          <h1>search by</h1>
          <form action="rent" method="GET">
-            <input type="text" name="search" placeholder="Search cars" required id="searchbar">
+            <input type="text" name="model" placeholder="Search cars" required id="searchbar">
             <button type="submit"><i class="fa fa-search"></i></button>
             <a href='original_page'><button type="button" class="reset-button">Reset</button></a>
 
