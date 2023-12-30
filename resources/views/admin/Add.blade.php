@@ -23,13 +23,16 @@
          <span class="error" >@error('plateNumber')*{{$message}} <br> @enderror</span>
 
          <label class = "in_type" for="color">Color:</label>
-         <select class = "dropdown-container" id="color" name="color" value = "{{old('name')}}">
+         <select class = "dropdown-container" id="color" name="color" value = "{{old('color')}}">
             <option class = "dropdown-select" value="" selected disabled>Select Color</option>
             <option class = "dropdown-select" value="Red">Red</option>
-            <option class = "dropdown-select" value="Blue">Blue</option>
-            <option class = "dropdown-select" value="Green">Green</option>
+            <option class = "dropdown-select" value="Blue">yassin_green</option>
+            <option class = "dropdown-select" value="Green">hana_blue</option>
             <option class = "dropdown-select" value="Black">Black</option>
             <option class = "dropdown-select" value="White">White</option>
+            <option class = "dropdown-select" value="White">silver</option>
+            <option class = "dropdown-select" value="White">hassan_turquoise</option>
+            <option class = "dropdown-select" value="White">yellow</option>
             <span class="error" >@error('color')*{{$message}} <br> @enderror</span>
             
          </select><br><br>
@@ -42,9 +45,25 @@
          <label class="in_type" for="model">Model:</label>
          <input class="in_field" type="text" id="model" name="model" value = "{{old('model')}}" ><br><br>
          <span class="error" >@error('model') {{$message}}@enderror</span>
-
+         
          <label class="in_type" for="office_id">Office ID:</label>
          <input class="in_field" type="text" id="office_id" name="office_id" value = "{{old('office_id')}}" ><br><br>
+         <span class="error" >@error('office_id') {{$message}}@enderror</span>
+         
+         <label class="in_type" for="price">Price:</label>
+         <input class="in_field" type="text" id="price" name="price" value = "{{old('price')}}" ><br><br>
+         <span class="error" >@error('price') {{$message}}@enderror</span>
+
+         <label class = "in_type" for="current_status">Status:</label>
+         <select class = "dropdown-container" id="current_status" name="current_status" value = "{{old('current_status')}}">
+            <option class = "dropdown-select" value="" selected disabled>Status</option>
+            <option class = "dropdown-select" value="busy">Busy</option>
+            <option class = "dropdown-select" value="available">Available</option>
+            <option class = "dropdown-select" value="out_of_service">Out of Service</option>
+            <span class="error" >@error('current_status')*{{$message}} <br> @enderror</span>
+            
+         </select><br><br>
+         
             
          </select><br><br>
 

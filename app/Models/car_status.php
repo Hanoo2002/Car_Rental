@@ -9,10 +9,9 @@ class car_status extends Model
 {
     use HasFactory;
     public $timestamps = false; 
-    protected $table = 'car_statuses';
-    protected $primaryKey = 'car_id';
+    protected $table = 'car_status';
+    protected $primaryKey = ['plate_number', 'date'];
     protected $fillable = [
-        'status',
-        'date'
+        'status'
     ];
 }
