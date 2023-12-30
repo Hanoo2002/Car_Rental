@@ -14,8 +14,8 @@
 <body>
     @include('components.sidebar')
     <div class="s007">
-        <form action="search_car" method="GET" >
-        @csrf
+        <form action="search_car" method="GET">
+            @csrf
             <div class="inner-form">
                 <div class="basic-search">
                 </div>
@@ -26,16 +26,19 @@
                             <div class="input-select">
                                 <select data-trigger="" name="office">
                                     <option placeholder="" value="">OFFICE</option>
-                                    <option>1 </option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    @foreach($offs as $off)
+                                    <option>{{ $off -> office_id}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="input-field">
                             <div class="input-select">
-                                <select data-trigger="" name="get_colors">
-                                <option value="">COLOR</option>
+                                <select data-trigger="" name="color">
+                                    <option value="">COLOR</option>
+                                    @foreach($res as $color)
+                                    <option>{{ $color -> color }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -47,15 +50,15 @@
                     <div class="row second">
                         <div class="input-field">
                             <div class="input-select">
-                            <div class="text" id="model">
-                                <input type="text" name="model" placeholder="model">
-                            </div>
+                                <div class="text" id="model">
+                                    <input type="text" name="model" placeholder="model">
+                                </div>
 
                             </div>
                             <div class="input-select">
-                            <div class="text" id="model">
-                                <input type="text" name="plate" placeholder="Plate number">
-                            </div>
+                                <div class="text" id="model">
+                                    <input type="text" name="plate" placeholder="Plate number">
+                                </div>
                             </div>
                         </div>
                         <div class="input-field">
@@ -72,7 +75,6 @@
                             <div class="input-select">
                                 <select data-trigger="" name="type">
                                     <option placeholder="" value="">TYPE</option>
-                                    <option>TYPE</option>
                                     <option>RENTED</option>
                                     <option>OUT OF SERVICE</option>
                                     <option>ACTIVE</option>

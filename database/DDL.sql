@@ -1,3 +1,4 @@
+use Car_Rental;
 CREATE TABLE office (
     office_id INT PRIMARY KEY,
     district VARCHAR(50),
