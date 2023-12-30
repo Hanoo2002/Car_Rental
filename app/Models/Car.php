@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
-    protected $table = 'cars';
-    protected $primaryKey = 'car_id';
+    protected $table = 'car';
+    protected $primaryKey = 'plate_number';
     protected $fillable = [
-        // 'plateNumber',
-        'color',
         'year',
         'model',
+        'color',
         'office_id',
+        'price',
+        'current_status'
     ];
 }

@@ -26,21 +26,16 @@
                             <div class="input-select">
                                 <select data-trigger="" name="office">
                                     <option placeholder="" value="">OFFICE</option>
-                                    <option>Off1 </option>
-                                    <option>Off2</option>
-                                    <option>Off3</option>
+                                    <option>1 </option>
+                                    <option>2</option>
+                                    <option>3</option>
                                 </select>
                             </div>
                         </div>
                         <div class="input-field">
                             <div class="input-select">
-                                <select data-trigger="" name="color">
-                                    <option placeholder="" value="">COLOR</option>
-                                    <option>RED</option>
-                                    <option>BLUE</option>
-                                    <option>GREEN</option>
-                                    <option>BLACK</option>
-                                    <option>WHITE</option>
+                                <select data-trigger="" name="get_colors">
+                                <option value="">COLOR</option>
                                 </select>
                             </div>
                         </div>

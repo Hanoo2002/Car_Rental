@@ -9,6 +9,8 @@ use Hash;
 use Session;
 use App\Models\Car;
 use App\Models\car_status;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Admin_controller extends Controller
 {
@@ -28,7 +30,6 @@ class Admin_controller extends Controller
             'status' => 'required'
         ]);
     
-        // $car = Car::where('plate_number', $request->input('plateNumber'))->first();
         $car = Car::where('car_id', $request->input('plateNumber'))->first();
     
         if ($car) {
@@ -81,27 +82,51 @@ class Admin_controller extends Controller
     public function add_car(Request $request)
     {   
         $request->validate([
-            // 'plateNumber'=>'required',
+            'plateNumber'=>'required',
             'color'=>'required',
             'year'=>'required',
             'model'=>'required',
-            'office_id'=>'required'
+            'office_id'=>'required',
+            'price'=>'required',
+            'current_status'=>'required'
         ]);
 
-        $car = new Car;
-        // $car->plateNumber = $request->plateNumber;
-        $car->color = $request->color;
-        $car->year = $request->year;
-        $car->model = $request->model;
-        $car->office_id = $request->office_id;
-        $res = $car->save();
-        if($res)
-        {
-            return back()->with('success','You have added a car successfully');
-        }
-        else
-        {
-            return back()->with('fail','Something went wrong');
+
+        DB::beginTransaction();
+    
+        try {
+            $query_car = "INSERT INTO car (plate_number, year, model, color, office_id, price, current_status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
+            $query_car_status = "INSERT INTO car_status (plate_number, `date`, `status`) 
+                VALUES (?, ?, ?)";
+    
+            $res = DB::insert($query_car, [
+                $request->plateNumber,
+                $request->year,
+                $request->model,
+                $request->color,
+                $request->office_id,
+                $request->price,
+                $request->current_status
+            ]);
+    
+            $res2 = DB::insert($query_car_status, [
+                $request->plateNumber,
+                Carbon::today(),
+                $request->current_status
+            ]);
+    
+            if ($res && $res2) {
+                DB::commit();
+                return back()->with('success', 'You have added a car successfully');
+            } else {
+                DB::rollBack();
+                return back()->with('fail', 'Something went wrong');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('fail', 'Something went wrong: ' . $e->getMessage());
         }
     }
 
@@ -174,45 +199,67 @@ class Admin_controller extends Controller
     }
 
     public function search_car_admin(Request $request){
-        $conditions = [];
+        $conditions = "";
 
         $office = $request->query('office');
         if (!empty($office)) {
-            $conditions['office_id'] = $office;
+            // $conditions['office_id'] = $office;
+            $conditions .= "office_id = $office";
         }
 
         $color = $request->query('color');
         if (!empty($color)) {
-            $conditions['color'] = $color;
+            // $conditions['color'] = $color;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "color = '$color'";
+
         }
 
         $year = $request->query('year');
         if (!empty($year)) {
-            $conditions['year'] = $year;
+            // $conditions['year'] = $year;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "year = $year";
         }
 
         $model = $request->query('model');
         if (!empty($model)) {
-            $conditions['model'] = $model;
+            // $conditions['model'] = $model;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "model = '$model'";
         }
 
-        // $time = $request->query('time');
-        // if (!empty($time)) {
-        //     $conditions['time'] = $time;
-        // }
+        $price = $request->query('price');
+        if (!empty($price)) {
+            // $conditions['price'] = $price;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "price = $price";
+        }
 
-        // $type = $request->query('type');
-        // if (!empty($type)) {
-        //     $conditions['type'] = $type;
-        // }
-
-        // $plate = $request->query('plate');
-        // if (!empty($plate)) {
-        //     $conditions['plate'] = $plate;
-        // }
-
+        $current_status = $request->query('current_status');
+        if (!empty($current_status)) {
+            // $conditions['current_status'] = $current_status;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "current_status = '$current_status'";
+        }
         
-        $results = Car::where($conditions)->get();
+        $query = "SELECT * FROM car";
+        if (!empty($conditions)) {
+            $query .= " WHERE $conditions";
+        }
+
+        $results = DB::select($query);
+        // dd($results);
         return view('admin.ViewCars_advancedSearch', compact('results'));
     }
 
