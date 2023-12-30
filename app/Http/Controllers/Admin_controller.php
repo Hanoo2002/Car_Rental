@@ -199,45 +199,67 @@ class Admin_controller extends Controller
     }
 
     public function search_car_admin(Request $request){
-        $conditions = [];
+        $conditions = "";
 
         $office = $request->query('office');
         if (!empty($office)) {
-            $conditions['office_id'] = $office;
+            // $conditions['office_id'] = $office;
+            $conditions .= "office_id = $office";
         }
 
         $color = $request->query('color');
         if (!empty($color)) {
-            $conditions['color'] = $color;
+            // $conditions['color'] = $color;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "color = '$color'";
+
         }
 
         $year = $request->query('year');
         if (!empty($year)) {
-            $conditions['year'] = $year;
+            // $conditions['year'] = $year;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "year = $year";
         }
 
         $model = $request->query('model');
         if (!empty($model)) {
-            $conditions['model'] = $model;
+            // $conditions['model'] = $model;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "model = '$model'";
         }
 
-        // $time = $request->query('time');
-        // if (!empty($time)) {
-        //     $conditions['time'] = $time;
-        // }
+        $price = $request->query('price');
+        if (!empty($price)) {
+            // $conditions['price'] = $price;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "price = $price";
+        }
 
-        // $type = $request->query('type');
-        // if (!empty($type)) {
-        //     $conditions['type'] = $type;
-        // }
-
-        // $plate = $request->query('plate');
-        // if (!empty($plate)) {
-        //     $conditions['plate'] = $plate;
-        // }
-
+        $current_status = $request->query('current_status');
+        if (!empty($current_status)) {
+            // $conditions['current_status'] = $current_status;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "current_status = '$current_status'";
+        }
         
-        $results = Car::where($conditions)->get();
+        $query = "SELECT * FROM car";
+        if (!empty($conditions)) {
+            $query .= " WHERE $conditions";
+        }
+
+        $results = DB::select($query);
+        // dd($results);
         return view('admin.ViewCars_advancedSearch', compact('results'));
     }
 

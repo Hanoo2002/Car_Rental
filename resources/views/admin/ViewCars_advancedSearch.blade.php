@@ -22,25 +22,25 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Office</th>
+                            <th>Office ID</th>
                             <th>Color</th>
                             <th>Year</th>
                             <th>Model</th>
                             <th>Plate</th>
-                            <th>Time</th>
-                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($results as $result)
                         <tr>
-                            <td>{{$result['office_id']}}</td>
-                            <td>{{$result['color']}}</td>
-                            <td>{{$result['year']}}</td>
-                            <td>{{$result['model']}}</td>
-                            <td>{{$result['Plate']}}</td>
-                            <td>{{$result['Time']}}</td>
-                            <td>{{$result['Type']}}</td>
+                            <td>{{$result->office_id}}</td>
+                            <td>{{$result->color}}</td>
+                            <td>{{$result->year}}</td>
+                            <td>{{$result->model}}</td>
+                            <td>{{$result->plate_number}}</td>
+                            <td>{{$result->price}}</td>
+                            <td>{{$result->current_status}}</td>
                         </tr>
                         @endforeach
                     </tbody>
