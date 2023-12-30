@@ -1,0 +1,108 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.view{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+}
+.wrapper1{
+    width: 450px;
+    margin-left: 350px;
+
+    background: beige;
+    border-radius: 50px;
+    color: black;
+    padding: 30px 40px;
+}
+
+.wrapper1 h1 {
+    font-size: 25px;
+    text-align: center;
+    font-family: Rockwell, serif;
+
+}
+
+.wrapper2{
+    width: 450px;
+    height: 350px;
+    background: beige;
+    border-radius: 50px;
+    color: black;
+    padding: 30px 40px;
+}
+
+.wrapper2 h1 {
+    font-size: 25px;
+    text-align: center;
+    font-family: Rockwell, serif;
+
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background-color: #e2e2e2;
+    transition: background-color 0.3s ease;
+}
+
+.form_container{
+    align-items: center;
+    margin-top: 30px;
+}
+
+.search_bar{
+    text-align: center;
+    border: 1px solid forestgreen;
+    border-radius: 10px;
+    margin-left: 50px;
+
+
+}
+
+.btn{
+
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+}
+.btn_wrap{
+    padding: 10px;
+    background-color: forestgreen;
+}
+
+.submit_btn{
+    display: block;
+    margin-left: 140px;
+    padding: 20px;
+    color: forestgreen;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+
+
+
+}
