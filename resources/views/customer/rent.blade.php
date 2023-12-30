@@ -55,6 +55,7 @@
                         <th>Model</th>
                         <th>Color</th>
                         <th>year</th>
+                        <th>District</th>
                      </tr>
                      </thead>
                      <tbody>
@@ -65,6 +66,7 @@
                            <td>{{ $car->model }}</td>
                            <td>{{ $car->color }}</td>
                            <td>{{ $car->year }}</td>
+                           <!-- <td>{{ $car->district }}</td>-->
                         </tr>
                      @endforeach
                      </tbody>
@@ -83,6 +85,12 @@
             <input  class="search_bar"  type="text" name="year" placeholder="YYYY" id="searchbar">
             <br></br>
             <input  class="search_bar"  type="text" name="color" placeholder="Color" id="searchbar">
+            <br></br>
+            <input  class="search_bar"  type="text" name="district" placeholder="District" id="searchbar">
+            <br></br>
+            <input  class="search_bar"  type="text" name="country" placeholder="Country" id="searchbar">
+            <br></br>
+            <input  class="search_bar"  type="text" name="city" placeholder="City" id="searchbar">
             <br></br>
             <button class="submit_btn" type="submit">Apply<i class="fa fa-search"></i></button>
             

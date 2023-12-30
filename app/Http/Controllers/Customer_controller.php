@@ -59,8 +59,9 @@ class Customer_controller extends Controller
         $color = $request->query('color');
         $year = $request->query('year');
         $model = $request->query('model');
+        $district = $request->query('district');
 
-        $query = "Select * from cars join car_statuses on cars.car_id = car_statuses.car_id";
+        $query = "Select * from cars join car_statuses on cars.car_id = car_statuses.car_id ";
         $query .= " where car_statuses.status = 'available'";
 
         if ($model) {
