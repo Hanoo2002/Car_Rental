@@ -16,7 +16,9 @@ class Admin_controller extends Controller
 {
     public function add()
     {
-        return view('admin.Add');
+        $query2 = "SELECT office_id from office;";
+        $res2 = DB::select($query2);
+        return view('admin.Add',['offs' => $res2]);
     }
 
     public function update()
@@ -137,7 +139,13 @@ class Admin_controller extends Controller
 
     public function view_tab()
     {
-        return view("admin.View");
+        $query = "SELECT DISTINCT color FROM car;";
+        $ress = DB::select($query);
+        $query2 = "SELECT office_id from office;";
+        $res2 = DB::select($query2);
+
+        //dd($ress);
+        return view("admin.View",['res' => $ress, 'offs' => $res2]);
     }
 
     public function register_admin(Request $request)
