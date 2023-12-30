@@ -9,21 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-{
-    Schema::create('offices', function (Blueprint $table) {
-        $table->string('office_id')->primary();
-        $table->string('country');
-        $table->string('city');
-        $table->timestamps();
-    });
-}
+    public function up() {
+        $sql = file_get_contents('database/DDL.sql');
+        DB::unprepared($sql);
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('offices');
+        //
     }
 };
+
+// php artisan migrate --path=/database/migrations/2023_12_30_193310_custom_d_d_l_import.php
