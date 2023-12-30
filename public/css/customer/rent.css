@@ -12,7 +12,7 @@ body{
 .wrapper1{
     width: 450px;
     margin-left: 350px;
-    height: 500px;
+   
     background: beige;
     border-radius: 50px;
     color: black;
@@ -28,7 +28,7 @@ body{
 
 .wrapper2{
     width: 450px;
-    height: 500px;
+    height: 350px;
     background: beige;
     border-radius: 50px;
     color: black;
@@ -67,4 +67,42 @@ body{
 .table tbody tr:hover {
     background-color: #e2e2e2;
     transition: background-color 0.3s ease;
+}
+
+.form_container{
+    align-items: center;
+    margin-top: 30px;
+}
+
+.search_bar{
+    text-align: center;
+    border: 1px solid forestgreen;
+    border-radius: 10px;
+    margin-left: 50px;
+
+
+}
+
+.btn{
+    
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+}
+.btn_wrap{
+    padding: 10px;
+    background-color: forestgreen;
+}
+
+.submit_btn{
+    display: block;
+    margin-left: 140px;
+    padding: 20px;
+    color: forestgreen;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    
+
+
 }

@@ -23,7 +23,7 @@ class Customer_controller extends Controller
 
     public function rentCar($car)
     {
-        dd($car, auth()->id());
+        //dd($car, auth()->id());
 
         // TODO query to rent car
 
@@ -48,7 +48,7 @@ class Customer_controller extends Controller
         }
 
         if ($color) {
-            $query .= " and color = :color";
+            $query .= " and color LIKE :color";
         }
 
         if ($year) {
@@ -56,12 +56,12 @@ class Customer_controller extends Controller
         }
 
         if ($office) {
-            $query .= " and office_id = :office";
+            $query .= " and office_id LIKE :office";
         }
 
         $cars = DB::select($query, array_filter([
             "model" => ($model) ? ($model . "%") : null,
-            "color" => $color,
+            "color" => ($color) ? ($color . "%") : null,
             "year" => $year,
             "office" => $office,
         ]));

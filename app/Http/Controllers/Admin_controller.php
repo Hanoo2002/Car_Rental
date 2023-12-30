@@ -42,8 +42,9 @@ class Admin_controller extends Controller
                 $msg = "*Status updated successfully for car with plate number: " . $request->input('plateNumber');
                 return back()->with('success', $msg);
             } else {
-                return back()->with('fail', $msg);
                 $msg = "*Failed to update status.";
+                return back()->with('fail', $msg);
+                
             }
         } else {
             $msg = "*Car with plate number " . $request->input('plateNumber') . " not found.";

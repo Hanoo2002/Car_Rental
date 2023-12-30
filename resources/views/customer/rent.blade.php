@@ -50,7 +50,8 @@
                   <table class="table table-bordered">
                      <thead>
                      <tr>
-                        <th>Select</th>
+                        <th>Rent </th>
+                        <th>Pickup</th>
                         <th>Model</th>
                         <th>Color</th>
                         <th>year</th>
@@ -59,7 +60,8 @@
                      <tbody>
                      @foreach($cars as $car)
                         <tr>
-                           <td><a href="{{ '/rent/' . $car->car_id }}">Rent</a></td>
+                           <td class="btn_wrap"><a class = "btn" href="{{ '/rent/' . $car->car_id }}">Rent</a></td>
+                           <td class="btn_wrap"><a class = "btn" href="{{ '/pickup/' . $car->car_id }}">Pickup</a></td>
                            <td>{{ $car->model }}</td>
                            <td>{{ $car->color }}</td>
                            <td>{{ $car->year }}</td>
@@ -74,11 +76,18 @@
 
       </div>
       <div class="wrapper2">
-         <h1>search by</h1>
-         <form action="rent" method="GET">
-            <input type="text" name="model" placeholder="Search cars" required id="searchbar">
-            <button type="submit"><i class="fa fa-search"></i></button>
-            <a href='original_page'><button type="button" class="reset-button">Reset</button></a>
+         <h1>Filter By</h1>
+         <form action="rent" method="GET" class ="form_container">
+            <input class="search_bar" type="text" name="model" placeholder="Model" id="searchbar">
+            <br></br>
+            <input  class="search_bar"  type="text" name="year" placeholder="YYYY" id="searchbar">
+            <br></br>
+            <input  class="search_bar"  type="text" name="color" placeholder="Color" id="searchbar">
+            <br></br>
+            <button class="submit_btn" type="submit">Apply<i class="fa fa-search"></i></button>
+            
+
+          <!--<a href='original_page'><button type="button" class="reset-button">Reset</button></a>-->
 
          </form>
 
