@@ -11,6 +11,8 @@ use App\Models\Car;
 use App\Models\car_status;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
+
 
 class Admin_controller extends Controller
 {
@@ -154,35 +156,37 @@ class Admin_controller extends Controller
             'ssn'=>'required'
         ]);
 
-        //Insert data into database
-        // $admin = new admin;
-        // $admin->fname = $request->f_name;
-        // $admin->lname = $request->l_name;
-        // $admin->office_id = $request->officeID;
-        // $admin->email = $request->email;
-        // $admin->password = bcrypt($request->password);
-        // $admin->ssn = $request->ssn;
-        // $res = $admin->save();
-
-        $query = "INSERT INTO `admin` (ssn, fname, lname, office_id , email , `password`) VALUES (?, ?, ?, ?, ?, ?)";
-        $res = DB::insert($query, [
-            $request->ssn,
-            $request->f_name,
-            $request->l_name,
-            $request->officeID,
-            $request->email,
-            // bcrypt($request->password)
-            ($request->password)
-        ]);
-        
-        if($res)
-        {
-            return back()->with('success','You have registered successfully');
-        }
-        else
-        {
-            return back()->with('fail','Something went wrong');
-        }        
+        try {
+            $query = "INSERT INTO `admin` (ssn, fname, lname, office_id , email , `password`) VALUES (?, ?, ?, ?, ?, ?)";
+            $res = DB::insert($query, [
+                $request->ssn,
+                $request->f_name,
+                $request->l_name,
+                $request->officeID,
+                $request->email,
+                // bcrypt($request->password)
+                ($request->password)
+            ]);
+            
+            if($res)
+            {
+                return back()->with('success','You have registered successfully');
+            }
+            else
+            {
+                return back()->with('fail','Something went wrong');
+            }       
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1062) {
+                return back()->with('fail', 'Failed to add admin. SSN exists.');
+            }
+            else if($errorCode == 1452){
+                return back()->with('fail', 'Failed to add admin. Office ID does not exist.');
+            } else {                
+                return back()->with('fail', 'Failed to add admin. Error: ' . $e->getMessage());
+            }
+        } 
     }
 
     public function originalPage(Request $request)
