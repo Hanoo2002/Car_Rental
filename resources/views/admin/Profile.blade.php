@@ -19,8 +19,10 @@
       <div>
       <div class="data_item"><p > Name: {{$adminAuth->fname}} {{$adminAuth->lname}}</p> </div>
       <div class="data_item"><p >Email: {{$adminAuth->email}}</p></div>
-      <div class="data_item"><p > SSN: {{$adminAuth->ssn}}</p></div>
+      <div class="data_item"><p > SSN: {{$adminAuth->SSN}}</p></div>
       <div class="data_item"><p > Office Id: {{$adminAuth->office_id}} </p></div>
+      <div class="data_item"><p > Country: {{$adminAuth->country}} </p></div>
+      <div class="data_item"><p > City: {{$adminAuth->city}} </p></div>
       </div>
    </div>
   </body>
