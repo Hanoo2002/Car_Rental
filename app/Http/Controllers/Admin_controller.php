@@ -28,21 +28,24 @@ class Admin_controller extends Controller
 
     public function update_car(Request $request){
         $request->validate([
-            'plateNumber' => 'required',
+            'plateNumber_update' => 'required',
             'status' => 'required'
         ]);
     
-        $car = Car::where('car_id', $request->input('plateNumber'))->first();
+        $select_car_query = "SELECT * FROM car WHERE plate_number = ?";
+        $res = DB::select($select_car_query, [$request->input('plateNumber_update')]);
+        if(!($res)){
+            $msg = "*Car with plate number " . $request->input('plateNumber_update') . " not found.";
+            return back()->with('fail', $msg);
+        }
+        $car = $res[0];
     
         if ($car) {
-            $carStatus = car_status::updateOrCreate(
-                ['car_id' => $car->car_id],
-                ['status' => $request->input('status')],
-                ['updated_at' => now()]
-            );
+            $update_car_query = "UPDATE car SET current_status = ? WHERE plate_number = ?";
+            $carStatus = DB::update($update_car_query, [$request->input('status'), $request->input('plateNumber_update')]);
     
             if ($carStatus) {
-                $msg = "*Status updated successfully for car with plate number: " . $request->input('plateNumber');
+                $msg = "*Status updated successfully for car with plate number: " . $request->input('plateNumber_update');
                 return back()->with('success', $msg);
             } else {
                 $msg = "*Failed to update status.";
@@ -50,26 +53,24 @@ class Admin_controller extends Controller
                 
             }
         } else {
-            $msg = "*Car with plate number " . $request->input('plateNumber') . " not found.";
+            $msg = "*Car with plate number " . $request->input('plateNumber_update') . " not found.";
             return back()->with('fail', $msg);
         }
     }
 
     public function delete_car(Request $request){
         $request->validate([
-            'plateNumber' => 'required'
+            'plateNumber_delete' => 'required'
         ]);
-    
-        // $car = Car::where('plate_number', $request->input('plateNumber'))->first();
-        $car = Car::where('car_id', $request->input('plateNumber'))->first();
-    
-        if ($car) {
-            $car->delete(); // Delete the car record
-    
-            $msg = "*Car with plate number: " . $request->input('plateNumber') . " deleted successfully.";
+
+        $delete_car_query = "DELETE FROM car WHERE plate_number = ?";
+        $res = DB::delete($delete_car_query, [$request->input('plateNumber_delete')]);
+
+        if ($res) {
+            $msg = "*Car with plate number: " . $request->input('plateNumber_delete') . " deleted successfully.";
             return back()->with('success', $msg);
         } else {
-            $msg = "*Car with plate number " . $request->input('plateNumber') . " not found.";
+            $msg = "*Car with plate number " . $request->input('plateNumber_delete') . " not found.";
             return back()->with('fail', $msg);
         }
     }
@@ -77,7 +78,8 @@ class Admin_controller extends Controller
 
     public function users()
     {
-        $users = Customer::all();
+        $query = "SELECT * FROM customer";
+        $users = DB::select($query);
         return view('admin.Users',['users'=>$users]);
     }   
 
@@ -155,20 +157,32 @@ class Admin_controller extends Controller
             'f_name'=>'required',
             'l_name'=>'required',
             'officeID'=>'required',
-            'email'=>'required|email|unique:admins',
+            'email'=>'required|email|unique:admin',
             'password'=>'required|confirmed|min:6|max:12',
             'ssn'=>'required'
         ]);
 
         //Insert data into database
-        $admin = new admin;
-        $admin->fname = $request->f_name;
-        $admin->lname = $request->l_name;
-        $admin->office_id = $request->officeID;
-        $admin->email = $request->email;
-        $admin->password = bcrypt($request->password);
-        $admin->ssn = $request->ssn;
-        $res = $admin->save();
+        // $admin = new admin;
+        // $admin->fname = $request->f_name;
+        // $admin->lname = $request->l_name;
+        // $admin->office_id = $request->officeID;
+        // $admin->email = $request->email;
+        // $admin->password = bcrypt($request->password);
+        // $admin->ssn = $request->ssn;
+        // $res = $admin->save();
+
+        $query = "INSERT INTO `admin` (ssn, fname, lname, office_id , email , `password`) VALUES (?, ?, ?, ?, ?, ?)";
+        $res = DB::insert($query, [
+            $request->ssn,
+            $request->f_name,
+            $request->l_name,
+            $request->officeID,
+            $request->email,
+            // bcrypt($request->password)
+            ($request->password)
+        ]);
+        
         if($res)
         {
             return back()->with('success','You have registered successfully');
@@ -185,24 +199,14 @@ class Admin_controller extends Controller
     }
 
     public function search(Request $request){
-    $searchQuery = $request->input('search');
+    $srch = $request->input('search');
+    $searchQuery = '%' . $srch . '%';
 
-    $query = Customer::query();
-
-    if ($searchQuery) {
-        $query->where(function ($subQuery) use ($searchQuery) {
-            $subQuery->where('fname', 'LIKE', "%$searchQuery%")
-                ->orWhere('lname', 'LIKE', "%$searchQuery%")
-                ->orWhere('email', 'LIKE', "%$searchQuery%")
-                ->orWhere('phone_number', 'LIKE', "%$searchQuery%")
-                ->orWhere('district', 'LIKE', "%$searchQuery%")
-                ->orWhere('city', 'LIKE', "%$searchQuery%")
-                ->orWhere('country', 'LIKE', "%$searchQuery%");
-        });
-    }
+    $query = "SELECT * FROM customer WHERE (fname LIKE ? 
+    OR lname LIKE ? OR email LIKE ? OR phone_number LIKE ? 
+    OR SSN LIKE ?)";
+    $users = DB::select($query, [$searchQuery, $searchQuery, $searchQuery, $searchQuery, $searchQuery]);
     
-    $users = $query->get();
-
     return view('admin.Users', compact('users'));
     }
 
@@ -267,7 +271,7 @@ class Admin_controller extends Controller
         }
 
         $results = DB::select($query);
-        // dd($results);
+        
         return view('admin.ViewCars_advancedSearch', compact('results'));
     }
 

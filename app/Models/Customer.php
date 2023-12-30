@@ -16,7 +16,7 @@ class Customer extends Model
         'phone_number',
         'email',
         'password',
-        'card_number',
+        'card_number'
     ];
 
 }

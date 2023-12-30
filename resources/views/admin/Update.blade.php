@@ -18,8 +18,8 @@
       <form class= "form" action="update_car"  method="post">
          @csrf
          <label class="in_type" for="plateNumber">Plate Number:</label>
-         <input class="in_field" type="text" id="plateNumber" name="plateNumber" value = "{{old('plateNumber')}}"><br>
-         <span class="error" >@error('plateNumber')*{{$message}} <br> @enderror</span>  
+         <input class="in_field" type="text" id="plateNumber_update" name="plateNumber_update" value = "{{old('plateNumber_update')}}"><br>
+         <span class="error" >@error('plateNumber_update')*{{$message}} <br> @enderror</span>  
          
          <label class="in_type" for="status">Status:</label>
          <select class = "dropdown-container" id="status" name="status" value = "{{old('status')}}">
@@ -40,9 +40,9 @@
       <form class= "form" action="delete_car"  method="post">
       @csrf
       </select><br><br>
-      <label class="in_type" for="plateNumber">Plate Number:</label>
-         <input class="in_field" type="text" id="plateNumber" name="plateNumber" value = "{{old('plateNumber')}}"><br>
-         <span class="error" >@error('plateNumber')*{{$message}} <br> @enderror</span>  
+      <label class="in_type" for="plateNumber_delete">Plate Number:</label>
+         <input class="in_field" type="text" id="plateNumber_delete" name="plateNumber_delete" value = "{{old('plateNumber_delete')}}"><br>
+         <span class="error" >@error('plateNumber_delete')*{{$message}} <br> @enderror</span>  
           <br><br>
       <input class="btn" id="delete" type="submit" value="Delete">
       </form>
