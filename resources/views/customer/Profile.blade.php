@@ -24,11 +24,8 @@
     <div>
         <div class="data_item"><p > Name: {{$auth->fname}} {{$auth->lname}}</p> </div>
         <div class="data_item"><p >Email: {{$auth->email}}</p></div>
-        <div class="data_item"><p > country: {{$auth->country}} </p></div>
-        <div class="data_item"><p > city: {{$auth->city}} </p></div>
-        <div class="data_item"><p > district: {{$auth->district}} </p></div>
-        <div class="data_item"><p > email: {{$auth->email}} </p></div>
-        <div class="data_item"><p > phone number: {{$auth->phone_number}} </p></div>
+        <div class="data_item"><p > SSN: {{$auth->SSN}} </p></div>
+        <div class="data_item"><p > Phone Number: {{$auth->phone_number}} </p></div>
     </div>
     </div>
 </body>

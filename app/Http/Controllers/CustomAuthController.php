@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\admin;
+use App\Models\office;
 use App\Models\Customer;
 use Hash;
 use Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CustomAuthController extends Controller
 {
@@ -77,7 +79,14 @@ class CustomAuthController extends Controller
     }
 
     public function adminLogin(Request $request){
-        $admin = admin::where('email','=',$request->email)->first();
+        $email = $request->email;
+        $query = "SELECT *
+            FROM admin
+            INNER JOIN office ON admin.office_id = office.office_id
+            WHERE admin.email = '$email'";
+
+        $res = DB::select($query);
+        $admin = count($res) > 0 ? $res[0] : null;        
         if($admin)
         {
             // if(Hash::check($request->password,$admin->password))
@@ -100,13 +109,20 @@ class CustomAuthController extends Controller
 
     public function userLogin(Request $request)
     {
-        $user = Customer::where('email','=',$request->email)->first();
-        if($user)
+        // $user = Customer::where('email','=',$request->email)->first();
+        $email = $request->email;
+        $query = "SELECT *
+            FROM customer
+            WHERE customer.email = '$email'";
+
+        $res = DB::select($query);
+        $customer = count($res) > 0 ? $res[0] : null;
+        if($customer)
         {
-            if(($request->password==$user->password))
+            if(($request->password==$customer->password))
             // if(Hash::check($request->password,$user->password))
             {
-                session(['auth' => $user]);
+                session(['auth' => $customer]);
                 return $this->userProfile($request);
             }
            else
