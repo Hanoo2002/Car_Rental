@@ -15,8 +15,7 @@ use App\Http\Controllers\Admin_controller;
 */
 
 Route::prefix("/admin")->group(function () {
-
-
+    
     Route::get('/Add', [Admin_controller::class, 'add']);
     Route::get('/Update', [Admin_controller::class, 'update']);
     Route::get('/Users', [Admin_controller::class, 'users']);
