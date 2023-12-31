@@ -63,8 +63,8 @@
                      <tbody>
                      @foreach($cars as $car)
                         <tr>
-                           <td class="btn_wrap"><a class = "btn" href="{{ '/rent/' . $car->car_id }}">Rent</a></td>
-                           <td class="btn_wrap"><a class = "btn" href="{{ '/pickup/' . $car->car_id }}">Pickup</a></td>
+                           <td class="btn_wrap"><a class = "btn" href="{{ '/rent/' . $car->plate_number }}">Rent</a></td>
+                           <td class="btn_wrap"><a class = "btn" href="{{ '/pickup/' . $car->plate_number }}">Pickup</a></td>
                            <td>{{ $car->model }}</td>
                            <td>{{ $car->color }}</td>
                            <td>{{ $car->year }}</td>
