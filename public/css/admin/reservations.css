@@ -1,0 +1,65 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.view{
+    display: grid;
+    column-gap: 30px;
+}
+.wrapper{
+    width: 450px;
+    margin-left: 350px;
+   
+    background: beige;
+    border-radius: 50px;
+    color: black;
+    padding: 30px 40px;
+}
+
+.wrapper h1 {
+    font-size: 25px;
+    text-align: center;
+    font-family: Rockwell, serif;
+
+}
+
+
+.form_container{
+    align-items: center;
+    margin-top: 30px;
+}
+
+.search_bar{
+    text-align: center;
+    border: 1px solid forestgreen;
+    border-radius: 10px;
+    margin-left: 50px;
+
+
+}
+
+.btn{
+    
+    border-radius: 2px;
+    color: rgb(200, 27, 27);
+    font-weight: bold;
+}
+.btn_wrap{
+    padding: 10px;
+    background-color: forestgreen;
+}
+
+.submit_btn{
+    display: block;
+    margin-left: 140px;
+    padding: 20px;
+    color: forestgreen;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    
+
+
+}
