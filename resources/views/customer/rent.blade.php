@@ -43,7 +43,6 @@
    <div class ="view">
       <div class="wrapper1">
          <h1>Available Cars</h1>
-
          <div class="view_component">
             <div class="row">
                <div class="col-12">

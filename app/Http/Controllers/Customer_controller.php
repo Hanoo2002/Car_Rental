@@ -24,7 +24,7 @@ class Customer_controller extends Controller
 
     public function rentCar($car)
     {
-        dd(auth()->id());
+        dd(session('auth') );
 
         // TODO query to rent car
 

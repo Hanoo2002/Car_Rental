@@ -49,41 +49,38 @@
                     </div>
                     <div class="row second">
                         <div class="input-field">
-                            <div class="input-select">
-                                <div class="text" id="model">
-                                    <input type="text" name="model" placeholder="model">
-                                </div>
+                            <div class="text" id="model">
+                                <input type="text" name="model" placeholder="Model">
+                            </div>
 
-                            </div>
-                            <div class="input-select">
-                                <div class="text" id="model">
-                                    <input type="text" name="plate" placeholder="Plate number">
-                                </div>
-                            </div>
+
+
                         </div>
                         <div class="input-field">
-                            <div>        </div>
-                            <div class="input-select">
-                                <select data-trigger="" name="time">
-                                    <option class = "time" placeholder="" value="">TIME</option>
-                                    <option>THIS WEEK</option>
-                                    <option>SUBJECT B</option>
-                                    <option>SUBJECT C</option>
-                                </select>
+
+                            <div class="text" id="plate">
+                                <input type="text" name="plate" placeholder="Plate Number">
                             </div>
+
                         </div>
                         <div class="input-field">
                             <div class="input-select">
-                                <select data-trigger="" name="type">
-                                    <option placeholder="" value="">TYPE</option>
-                                    <option>RENTED</option>
-                                    <option>OUT OF SERVICE</option>
-                                    <option>ACTIVE</option>
+                                <select data-trigger="" name="current_status">
+                                    <option placeholder="" value="">Status</option>
+                                    <option>busy</option>
+                                    <option>available</option>
+                                    <option>0ut_of_service </option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row third">
+                    <div class="input-field">
+                            <div class="text" id="price">
+                                <input type="text" name="price" placeholder="Price">
+                            </div>
+
+                        </div>
                         <div class="input-field">
                             <button class="btn-search">Search</button>
                         </div>

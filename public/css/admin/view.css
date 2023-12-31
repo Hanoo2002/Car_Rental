@@ -967,9 +967,9 @@ html {
   
   .s007 form .inner-form .advance-search .row.second {
     margin-bottom: 46px;
-    margin-left: -60px;
     grid-template-columns: 1fr 1fr;
     column-gap: 40px;
+    justify-content: start;
   }
   
   .s007 form .inner-form .advance-search .row.third {

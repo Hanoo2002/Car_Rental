@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/admin/Reservations.css') }}">
-    <title>Reservation</title>
+    <title>Car Reservation</title>
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -13,24 +13,20 @@
     </div>
     
     <div class="container">     
-         <form action="Reservations_apply" method="POST" class="form_container">
+         <form action="carStatus_apply" method="POST" class="form_container">
             @csrf
             <div class="date-picker-container">
-               <label for="start_date">Start Date</label>
-               <input required class="search_bar" type="date" name="start_date" id="searchbar">
-               <label for="end_date">End Date</label>
-               <input required class="search_bar" type="date" name="end_date">
+               <label for="date">Date</label>
+               <input class="search_bar" type="date" name="date" id="searchbar">
                <button class="submit_btn" type="submit">Apply</button>
             </div>
             <p>Number of queries: {{ count($results) }}</p>
-            <p>
             <?php
             try {
-                echo "Reservation Between " . $start_date . " AND " . $end_date;
+                echo "Reservations IN " . $date;
             } catch (Exception $e) {
             }
             ?>
-            </p>
          </form>
 
         <div class="row">
@@ -38,43 +34,33 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Procedure ID</th>
-                        <th>Name</th>
-                        <th>SSN</th>
-                        <th>Phone Number</th>
-                        <th>Email</th>
-                        <th>Plate Number</th>
+                        <th>Office ID</th>
+                        <th>Plate</th>
                         <th>Year</th>
                         <th>Model</th>
-                        <th>Color</th>  
                         <th>Price</th>
-                        <th>Office ID</th>
+                        <th>Color</th>
+                        <th>Status</th>
                         <th>Country</th>
                         <th>City</th>
                         <th>District</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                     </tr>
+                        <th>Date</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach($results as $result)
                         <tr>
-                           <td>{{$result->procedure_id}}</td>
-                           <td>{{ $result->fname }} {{ $result->lname }}</td>
-                            <td>{{$result->SSN}}</td>
-                            <td>{{$result->phone_number}}</td>
-                            <td>{{$result->email}}</td>
+                            <td>{{$result->office_id}}</td>
                             <td>{{$result->plate_number}}</td>
                             <td>{{$result->year}}</td>
                             <td>{{$result->model}}</td>
-                            <td>{{$result->color}}
                             <td>{{$result->price}}</td>
-                            <td>{{$result->office_id}}</td>
+                            <td>{{$result->color}}</td>
+                            <td>{{$result->current_status}}</td>
                             <td>{{$result->country}}</td>
                             <td>{{$result->city}}</td>
                             <td>{{$result->district}}</td>
-                            <td>{{$result->start_date}}</td>
-                            <td>{{$result->end_date}}</td>
+                            <td>{{$result->date}}</td>
                         </tr>
                         @endforeach
                     </tbody>
