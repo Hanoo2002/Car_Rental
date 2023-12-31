@@ -286,7 +286,7 @@ class Admin_controller extends Controller
             if (!empty($conditions)) {
                 $conditions .= " AND ";
             }
-            $conditions .= "plate = $plate";
+            $conditions .= "plate_number LIKE '%$plate%' ";
         }
         
         $query = "SELECT * FROM car";
