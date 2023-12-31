@@ -62,9 +62,10 @@
                             </div>
                         </div>
                         <div class="input-field">
+                            <div>        </div>
                             <div class="input-select">
                                 <select data-trigger="" name="time">
-                                    <option placeholder="" value="">TIME</option>
+                                    <option class = "time" placeholder="" value="">TIME</option>
                                     <option>THIS WEEK</option>
                                     <option>SUBJECT B</option>
                                     <option>SUBJECT C</option>
