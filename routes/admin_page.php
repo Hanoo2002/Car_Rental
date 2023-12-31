@@ -39,6 +39,5 @@ use App\Http\Controllers\Admin_controller;
     Route::get('/Reservation_customer', [Admin_controller::class, 'Reservation_customer']);
     Route::get('/payements', [Admin_controller::class, 'payements'])->name('payements');
     Route::get('/carstatus', [Admin_controller::class, 'carstatus'])->name('carstatus');
-    
-    
-    Route::get('/Reservations', [Admin_controller::class, 'Reservation_apply']);
+        
+    Route::get('/Reservations_apply', [Admin_controller::class, 'Reservation_apply']);
