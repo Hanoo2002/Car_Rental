@@ -45,7 +45,7 @@ use App\Http\Controllers\Admin_controller;
     Route::get('/carStatus', [Admin_controller::class, 'carStatus']);
     Route::post('/carStatus_apply', [Admin_controller::class, 'carStatus_apply']);
 
-    Route::get('/Reservation_customer', [Admin_controller::class, 'Reservation_customer']);
-    Route::get('/payements', [Admin_controller::class, 'payements'])->name('payements');
-    Route::get('/carstatus', [Admin_controller::class, 'carstatus'])->name('carstatus');
+    // tab4
+    Route::get('/customerReservation', [Admin_controller::class, 'customerReservation']);
+    Route::post('/customerReservation_apply', [Admin_controller::class, 'customerReservation_apply']);
         

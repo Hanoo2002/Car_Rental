@@ -418,6 +418,59 @@ class Admin_controller extends Controller
             ]
     );
 }
+    // **********************TAB4************************
+    public function customerReservation(Request $request)
+    {   
+        $query = "SELECT * FROM customer
+        NATURAL JOIN pick_up
+        NATURAL JOIN car
+        NATURAL JOIN office
+        UNION
+        SELECT * FROM customer
+        NATURAL JOIN rent
+        NATURAL JOIN car
+        NATURAL JOIN office;
+        ";
+
+        $results = DB::select($query);
+        return view("admin.customerReservation" ,[
+            "results"=>$results
+        ]);
+    }
+
+    public function customerReservation_apply(Request $request)
+    {   
+        $srch = $request->input('search');
+        $searchQuery = '%' . $srch . '%';
+        
+        $query = "SELECT * FROM customer
+        NATURAL JOIN pick_up
+        NATURAL JOIN car
+        NATURAL JOIN office
+    WHERE (fname LIKE '$searchQuery' 
+        OR lname LIKE '$searchQuery' 
+        OR email LIKE '$searchQuery' 
+        OR phone_number LIKE '$searchQuery' 
+        OR SSN LIKE '$searchQuery')
+    
+    UNION
+    
+    SELECT * FROM customer
+        NATURAL JOIN rent
+        NATURAL JOIN car
+        NATURAL JOIN office
+    WHERE (fname LIKE '$searchQuery' 
+        OR lname LIKE '$searchQuery' 
+        OR email LIKE '$searchQuery' 
+        OR phone_number LIKE '$searchQuery' 
+        OR SSN LIKE '$searchQuery')
+        ";
+        
+        $results = DB::select($query);
+        return view("admin.customerReservation" ,[
+            "results"=>$results
+        ]);
+}
 
 
 }
