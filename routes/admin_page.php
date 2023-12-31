@@ -40,6 +40,10 @@ use App\Http\Controllers\Admin_controller;
     // tab2
     Route::get('/carReservation', [Admin_controller::class, 'carReservation']);
     Route::post('/carReservations_apply', [Admin_controller::class, 'carReservations_apply']);
+    
+    // tab3
+    Route::get('/carStatus', [Admin_controller::class, 'carStatus']);
+    Route::post('/carStatus_apply', [Admin_controller::class, 'carStatus_apply']);
 
     Route::get('/Reservation_customer', [Admin_controller::class, 'Reservation_customer']);
     Route::get('/payements', [Admin_controller::class, 'payements'])->name('payements');

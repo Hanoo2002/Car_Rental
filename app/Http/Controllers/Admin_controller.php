@@ -351,7 +351,6 @@ class Admin_controller extends Controller
         return view("admin.carReservation" ,[
             "results"=>$results
         ]);
-        return view("admin.carReservation");
     }
 
     public function carReservations_apply(Request $request)
@@ -381,6 +380,46 @@ class Admin_controller extends Controller
             ]
     );
 }
+
+// **********************TAB3************************
+    public function carStatus(Request $request)
+    {   
+        $query = "SELECT * FROM car_status
+        NATURAL JOIN car
+        NATURAL JOIN office
+        ";
+
+        $results = DB::select($query);
+        return view("admin.carStatus" ,[
+            "results"=>$results
+        ]);
+    }
+
+    public function carStatus_apply(Request $request)
+    {   
+        $request->validate([
+            'date'=>'required',
+        ]);
+
+        $date = $request->date;
+        
+        $date = Carbon::parse($date)->format('Y-m-d');
+        
+        $query = "SELECT * 
+          FROM car_status
+          NATURAL JOIN car
+          NATURAL JOIN office
+          WHERE date LIKE '%" . $date . "%'";
+        
+        $results = DB::select($query);
+        return view('admin.carStatus',[
+            "results"=>$results,
+            "date"=>$date,
+            ]
+    );
+}
+
+
 }
 
 
