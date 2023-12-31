@@ -71,3 +71,5 @@ CREATE TABLE car_status (
     PRIMARY KEY (plate_number, date),
     FOREIGN KEY (plate_number) REFERENCES car(plate_number)
 );
+
+CREATE TABLE `procedure` (ssn int, plate_number VARCHAR(20), procedure_id VARCHAR(20) PRIMARY KEY, `procedure` VARCHAR(20), `date` datetime);
