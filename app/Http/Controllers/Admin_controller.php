@@ -344,7 +344,11 @@ class Admin_controller extends Controller
                 WHERE start_date >= '$start_date' AND end_date <= '$end_date'";
         
         $results = DB::select($query);
-        return view('admin.Reservations', compact('results'));
+        return view('admin.Reservations',[
+            "res"
+        ]
+    
+    );
     }
 }
 
