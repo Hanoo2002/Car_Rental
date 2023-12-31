@@ -14,6 +14,8 @@ html {
    */
   body {
     margin: 0;
+    justify-content: center;
+    align-items: center;
   }
   
   /**
@@ -473,7 +475,6 @@ html {
   }
   
   .choices[data-type*="select-one"] .choices__button {
-    background-image: url("../../icons/cross-inverse.svg");
     padding: 0;
     background-size: 8px;
     height: 100%;
@@ -540,7 +541,6 @@ html {
     margin-left: 8px;
     padding-left: 16px;
     border-left: 1px solid #008fa1;
-    background-image: url("../../icons/cross.svg");
     background-size: 8px;
     width: 8px;
     line-height: 1;
@@ -738,7 +738,7 @@ html {
     font-size: 12px;
     padding: 10px;
     border-bottom: 1px solid #f7f7f7;
-    color: gray;
+    color: rgb(128, 128, 128);
   }
   
   .choices__button {
@@ -795,7 +795,7 @@ html {
         justify-content: center;
     -ms-flex-align: center;
         align-items: center;
-    background: #00b5e9;
+    background: #6bb06b;
     padding: 15px;
     font-family: 'Roboto', sans-serif;
   }
@@ -967,6 +967,9 @@ html {
   
   .s007 form .inner-form .advance-search .row.second {
     margin-bottom: 46px;
+    margin-left: -60px;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
   }
   
   .s007 form .inner-form .advance-search .row.third {
@@ -975,10 +978,16 @@ html {
   
   .s007 form .inner-form .advance-search .input-field {
     width: calc(33.3333% - 30px);
+
   }
   
   .s007 form .inner-form .advance-search .input-select {
     height: 40px;
+    margin-left: 20px;
+  }
+
+  .time{
+    
   }
   
   .s007 form .inner-form .advance-search .choices__inner {
