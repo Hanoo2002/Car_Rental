@@ -281,7 +281,7 @@ class Admin_controller extends Controller
         }
 
         $plate = $request->query('plate');
-        if (!empty($price)) {
+        if (!empty($plate)) {
             // $conditions['plate'] = $plate;
             if (!empty($conditions)) {
                 $conditions .= " AND ";

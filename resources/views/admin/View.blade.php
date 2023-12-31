@@ -75,6 +75,12 @@
                         </div>
                     </div>
                     <div class="row third">
+                    <div class="input-field">
+                            <div class="text" id="price">
+                                <input type="text" name="price" placeholder="Price">
+                            </div>
+
+                        </div>
                         <div class="input-field">
                             <button class="btn-search">Search</button>
                         </div>
