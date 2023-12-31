@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class CustomAuthController extends Controller
 {
+
     public function login()
     {
         return view("auth.login");
@@ -126,7 +127,9 @@ class CustomAuthController extends Controller
             if(($request->password==$customer->password))
             // if(Hash::check($request->password,$user->password))
             {
+                $user_data = $customer;
                 session(['auth' => $customer]);
+                
                 return $this->userProfile($request);
             }
            else
@@ -158,4 +161,6 @@ class CustomAuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+
 }

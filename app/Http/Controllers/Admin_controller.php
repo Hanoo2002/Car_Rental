@@ -279,6 +279,15 @@ class Admin_controller extends Controller
             }
             $conditions .= "current_status = '$current_status'";
         }
+
+        $plate = $request->query('plate');
+        if (!empty($price)) {
+            // $conditions['plate'] = $plate;
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "plate = $plate";
+        }
         
         $query = "SELECT * FROM car";
         if (!empty($conditions)) {

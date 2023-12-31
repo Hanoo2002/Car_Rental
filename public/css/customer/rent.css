@@ -6,11 +6,12 @@ body{
 }
 .view{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
     column-gap: 30px;
+    margin-top: 50px;
 }
 .wrapper1{
-    width: 450px;
+    width: 750px;
     margin-left: 350px;
    
     background: beige;
@@ -28,7 +29,7 @@ body{
 
 .wrapper2{
     width: 450px;
-    height: 350px;
+    height: 500px;
     background: beige;
     border-radius: 50px;
     color: black;
