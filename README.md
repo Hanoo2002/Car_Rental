@@ -1,5 +1,6 @@
 # General
 - [ ] Security (can't access profiles without login [changing in URL])
+- [ ] prevent back btn logout
 
 # Admin
 
@@ -7,13 +8,11 @@
 - [x] admin sidemenu styling 
 - [x] admin sidemenu on hover? 
 - [x] admin sidemenu on click animation 
-- [ ] add color in DB
-- [ ] add panel styling 
-- [ ] city dropdown options depend on country
+- [x] add color in DB
+- [ ] add office
 - [ ] error msg on comboboxes not showning
 - [ ] office id validation not working / make it combobox in admin registration
-- [ ] prevent back btn logout
--[ ] view search by status not working
+- [ ] view search by status not working
 
 
 # DDL
