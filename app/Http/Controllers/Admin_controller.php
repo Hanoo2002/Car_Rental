@@ -345,9 +345,8 @@ class Admin_controller extends Controller
         
         $results = DB::select($query);
         return view('admin.Reservations',[
-            "res"
+            "results"=>$results
         ]
-    
     );
     }
 }
