@@ -33,12 +33,14 @@ use App\Http\Controllers\Admin_controller;
     Route::post('/update_car', [Admin_controller::class, 'update_car'])->name('update_car');
     Route::post('/delete_car', [Admin_controller::class, 'delete_car'])->name('delete_car');
 
-
+    // tab1
     Route::get('/Reservations', [Admin_controller::class, 'Reservations']);
-    Route::get('/Reservations_apply', [Admin_controller::class, 'Reservations_apply']);
+    Route::post('/Reservations_apply', [Admin_controller::class, 'Reservations_apply']);
 
+    // tab2
+    Route::get('/carReservation', [Admin_controller::class, 'carReservation']);
+    Route::post('/carReservations_apply', [Admin_controller::class, 'carReservations_apply']);
 
-    Route::get('/Reservations_by_car', [Admin_controller::class, 'Reservations_by_car']);
     Route::get('/Reservation_customer', [Admin_controller::class, 'Reservation_customer']);
     Route::get('/payements', [Admin_controller::class, 'payements'])->name('payements');
     Route::get('/carstatus', [Admin_controller::class, 'carstatus'])->name('carstatus');

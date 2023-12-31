@@ -295,7 +295,9 @@ class Admin_controller extends Controller
         return view("admin.View");
     }
 
-    // REPORTS
+    // **********************REPORTS************************
+
+    // **********************TAB1************************
     public function Reservations(Request $request)
     {
         $query = "SELECT * FROM car
@@ -308,30 +310,7 @@ class Admin_controller extends Controller
         ]);
     }
 
-    public function Reservations_by_car(Request $request)
-    {
-        return "RESERVATIONS BY CAR";
-        return view("admin.Reservations_by_car");
-    }
-
-    public function Reservation_customer(Request $request)
-    {
-        return "RESERVATIONS BY CUSTOMER";
-        return view("admin.Reservation_customer");
-    }
-
-    public function payements(Request $request)
-    {
-        return "PAYEMENTS";
-        return view("admin.payements");
-    }
-
-    public function carstatus(Request $request)
-    {
-        return "CAR STATUS";
-        return view("admin.carstatus");
-    } 
-
+    
     public function Reservations_apply(Request $request)
     {   
         $request->validate([
@@ -341,10 +320,10 @@ class Admin_controller extends Controller
 
         $start_date = $request->start_date;
         $end_date = $request->end_date;
-
+        
         $start_date = Carbon::parse($start_date)->format('Y-m-d');
         $end_date = Carbon::parse($end_date)->format('Y-m-d');
-
+        
         $query = "SELECT * FROM car
         NATURAL JOIN rent
         NATURAL JOIN customer
@@ -353,10 +332,74 @@ class Admin_controller extends Controller
         
         $results = DB::select($query);
         return view('admin.Reservations',[
-            "results"=>$results
-        ]
+            "results"=>$results,
+            "start_date"=>$start_date,
+            "end_date"=>$end_date
+            ]
     );
+}
+
+// **********************TAB2************************
+    public function carReservation(Request $request)
+    {   
+        $query = "SELECT * FROM car
+        NATURAL JOIN rent
+        NATURAL JOIN customer
+        NATURAL JOIN office";
+
+        $results = DB::select($query);
+        return view("admin.carReservation" ,[
+            "results"=>$results
+        ]);
+        return view("admin.carReservation");
     }
+
+    public function carReservations_apply(Request $request)
+    {   
+        $request->validate([
+            'start_date'=>'required',
+            'end_date'=>'required',
+        ]);
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        
+        $start_date = Carbon::parse($start_date)->format('Y-m-d');
+        $end_date = Carbon::parse($end_date)->format('Y-m-d');
+        
+        $query = "SELECT * FROM car
+        NATURAL JOIN rent
+        NATURAL JOIN customer
+        NATURAL JOIN office
+        WHERE start_date >= '$start_date' AND end_date <= '$end_date'";
+        
+        $results = DB::select($query);
+        return view('admin.carReservation',[
+            "results"=>$results,
+            "start_date"=>$start_date,
+            "end_date"=>$end_date
+            ]
+    );
+}
 }
 
 
+
+
+// public function Reservation_customer(Request $request)
+// {
+//     return "RESERVATIONS BY CUSTOMER";
+//     return view("admin.Reservation_customer");
+// }
+
+// public function payements(Request $request)
+// {
+//     return "PAYEMENTS";
+//     return view("admin.payements");
+// }
+
+// public function carstatus(Request $request)
+// {
+//     return "CAR STATUS";
+//     return view("admin.carstatus");
+// } 
