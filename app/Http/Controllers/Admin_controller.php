@@ -472,26 +472,45 @@ class Admin_controller extends Controller
         ]);
 }
 
+// **********************TAB5************************
+    public function payements(Request $request)
+    {   
+        $query = "SELECT DATE(start_date) AS payment_day, SUM(amount_paid) AS total_payment
+        FROM rent
+        GROUP BY DATE(start_date)
+        ORDER BY payment_day";
 
+        $results = DB::select($query);
+        return view("admin.payements" ,[
+            "results"=>$results
+        ]);
+    }
+
+    public function payements_apply(Request $request)
+    {   
+        $request->validate([
+            'start_date'=>'required',
+            'end_date'=>'required',
+        ]);
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        
+        $start_date = Carbon::parse($start_date)->format('Y-m-d');
+        $end_date = Carbon::parse($end_date)->format('Y-m-d');
+        
+        $query = "SELECT DATE(start_date) AS payment_day, SUM(amount_paid) AS total_payment
+        FROM rent
+        WHERE start_date BETWEEN '$start_date' AND '$end_date'
+        GROUP BY DATE(start_date)
+        ORDER BY payment_day";
+        
+        $results = DB::select($query);
+        return view('admin.payements',[
+            "results"=>$results,
+            "start_date"=>$start_date,
+            "end_date"=>$end_date
+            ]
+    );
+    }
 }
-
-
-
-
-// public function Reservation_customer(Request $request)
-// {
-//     return "RESERVATIONS BY CUSTOMER";
-//     return view("admin.Reservation_customer");
-// }
-
-// public function payements(Request $request)
-// {
-//     return "PAYEMENTS";
-//     return view("admin.payements");
-// }
-
-// public function carstatus(Request $request)
-// {
-//     return "CAR STATUS";
-//     return view("admin.carstatus");
-// } 

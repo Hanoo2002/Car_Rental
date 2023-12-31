@@ -48,4 +48,8 @@ use App\Http\Controllers\Admin_controller;
     // tab4
     Route::get('/customerReservation', [Admin_controller::class, 'customerReservation']);
     Route::post('/customerReservation_apply', [Admin_controller::class, 'customerReservation_apply']);
+
+    // tab5
+    Route::get('/payements', [Admin_controller::class, 'payements']);
+    Route::post('/payements_apply', [Admin_controller::class, 'payements_apply']);
         
