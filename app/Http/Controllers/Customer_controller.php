@@ -126,7 +126,8 @@ class Customer_controller extends Controller
         DB::insert($sql, [ $custSSN, $car, $start_date ,$end_date, $money]);
 
         session()->flash("success", "Car rented successfully");
-
+        // TODO redirect to pay trips
+        
         $user = session('auth');
         return view('customer.Profile', ['auth' => $user]);
     }
