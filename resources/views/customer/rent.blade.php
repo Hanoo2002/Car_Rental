@@ -42,7 +42,7 @@
 
    <div class ="view">
       <div class="wrapper1">
-         <h1>Available Cars</h1>
+         <h1>Available Cars Today</h1>
          <div class="view_component">
             <div class="row">
                <div class="col-12">
@@ -50,7 +50,6 @@
                      <thead>
                      <tr>
                         <th>Rent </th>
-                        <th>Pickup</th>
                         <th>Model</th>
                         <th>Color</th>
                         <th>year</th>
@@ -63,7 +62,6 @@
                      @foreach($cars as $car)
                         <tr>
                            <td class="btn_wrap"><a class = "btn" href="{{ '/rent/' . $car->plate_number }}">Rent</a></td>
-                           <td class="btn_wrap"><a class = "btn" href="{{ '/pickup/' . $car->plate_number }}">Pickup</a></td>
                            <td>{{ $car->model }}</td>
                            <td>{{ $car->color }}</td>
                            <td>{{ $car->year }}</td>
@@ -94,6 +92,10 @@
             <input  class="search_bar"  type="text" name="country" placeholder="Country" id="searchbar">
             <br></br>
             <input  class="search_bar"  type="text" name="city" placeholder="City" id="searchbar">
+            <br></br>
+            <input  class="search_bar"  type="date" name="start_date" id="searchbar">
+            <br></br>
+            <input  class="search_bar"  type="date" name="end_date" id="searchbar">
             <br></br>
             <button class="submit_btn" type="submit">Apply<i class="fa fa-search"></i></button>
             
