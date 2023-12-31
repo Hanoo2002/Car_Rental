@@ -30,32 +30,39 @@ class CustomAuthController extends Controller
             'l_name'=>'required',
             'p_number'=>'required',
             'card'=>'required',
-            'email'=>'required|email|unique:customers',
+            'email'=>'required|email|unique:customer',
             'password'=>'required|confirmed|min:6|max:12'
-        ]);
-
-        //Insert data into database
-        $usr = new Customer;
-
-        $usr->fname = $request->f_name;
-        $usr->lname = $request->l_name;
-        $usr->city = $request->City;
-        $usr->country = $request->country;
-        $usr->district = $request->district;
-        $usr->phone_number = $request->p_number;
-        $usr->email = $request->email;
-        $usr->password = bcrypt($request->password);
-        $usr->card_number = $request->card;
-
-        $res = $usr->save();
-        if($res)
-        {   
-            return back()->with('success','You have registered successfully');
-        }
-        else
-        {
-            return back()->with('fail','Something went wrong');
-        }        
+        ]);        
+        
+        try {
+            $query = "INSERT INTO `customer` (SSN, fname, lname, phone_number , email , `password` , `card_number`) VALUES (?, ?, ?, ?, ?, ?,?)";
+            $res = DB::insert($query, [
+                $request->SSN,
+                $request->f_name,
+                $request->l_name,
+                $request->p_number,
+                $request->email,
+                // bcrypt($request->password)
+                $request->password,
+                $request->card_number
+            ]);
+            if($res)
+            {
+                return back()->with('success','You have registered successfully');
+            }
+            else
+            {
+                return back()->with('fail','Something went wrong');
+            }       
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1062) {
+                return back()->with('fail', 'Failed to add customer. SSN exists.');
+            }
+           else {                
+                return back()->with('fail', 'Failed to add admin. Error: ' . $e->getMessage());
+            }
+        }       
     }
 
     public function loginUser(Request $request)

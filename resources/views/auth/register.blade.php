@@ -27,24 +27,10 @@
         </div>
         <div class="input-box">
           <label>
-            <input type="text" placeholder="Country" name="country" id="country" value="{{old('country')}}">
+            <input type="text" placeholder="SSN" name="SSN" id="SSN" value="{{old('SSN')}}">
           </label>
           <br>
-          <span class="error">@error('country')*{{$message}}@enderror</span>
-        </div>
-        <div class="input-box">
-          <label>
-            <input type="text" placeholder="City" name="City" id="City" value="{{old('City')}}">
-          </label>
-          <br>
-          <span class="error">@error('City')*{{$message}}@enderror</span>
-        </div>
-        <div class="input-box">
-          <label>
-            <input type="text" placeholder="district" name="district" id="district" value="{{old('district')}}">
-          </label>
-          <br>
-          <span class="error">@error('district')*{{$message}}@enderror</span>
+          <span class="error">@error('SSN')*{{$message}}@enderror</span>
         </div>
         <div class="input-box">
           <label>
