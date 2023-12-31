@@ -127,7 +127,8 @@ class Customer_controller extends Controller
 
         session()->flash("success", "Car rented successfully");
 
-        return back();
+        $user = session('auth');
+        return view('customer.Profile', ['auth' => $user]);
     }
     //    public function search_car(Request $request)
 //    {

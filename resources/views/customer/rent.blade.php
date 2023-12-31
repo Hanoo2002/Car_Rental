@@ -73,6 +73,7 @@
                      </tbody>
                   </table>
                </div>
+               <span class="error">@error('rent')*{{$success}}@enderror</span>
             </div>
          </div>
 
