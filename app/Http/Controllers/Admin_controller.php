@@ -50,6 +50,13 @@ class Admin_controller extends Controller
     
             if ($carStatus) {
                 $msg = "*Status updated successfully for car with plate number: " . $request->input('plateNumber_update');
+                $query_car_status = "INSERT INTO car_status (plate_number, `date`, `status`) 
+                    VALUES (?, ?, ?)";
+                $res2 = DB::insert($query_car_status, [
+                    $request->input('plateNumber_update'),
+                    Carbon::now(),
+                    $request->input('status')
+                ]);
                 return back()->with('success', $msg);
             } else {
                 $msg = "*Failed to update status.";
@@ -121,7 +128,7 @@ class Admin_controller extends Controller
     
             $res2 = DB::insert($query_car_status, [
                 $request->plateNumber,
-                Carbon::today(),
+                Carbon::now(),
                 $request->current_status
             ]);
     
@@ -287,7 +294,58 @@ class Admin_controller extends Controller
     {
         return view("admin.View");
     }
-    
+
+    // REPORTS
+    public function Reservations(Request $request)
+    {
+        return view("admin.Reservations");
+    }
+
+    public function Reservations_by_car(Request $request)
+    {
+        return "RESERVATIONS BY CAR";
+        return view("admin.Reservations_by_car");
+    }
+
+    public function Reservation_customer(Request $request)
+    {
+        return "RESERVATIONS BY CUSTOMER";
+        return view("admin.Reservation_customer");
+    }
+
+    public function payements(Request $request)
+    {
+        return "PAYEMENTS";
+        return view("admin.payements");
+    }
+
+    public function carstatus(Request $request)
+    {
+        return "CAR STATUS";
+        return view("admin.carstatus");
+    } 
+
+    public function Reservation_apply(Request $request)
+    {   
+        $request->validate([
+            'start_date'=>'required',
+            'end_date'=>'required',
+        ]);
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        $start_date = Carbon::parse($start_date)->format('Y-m-d');
+        $end_date = Carbon::parse($end_date)->format('Y-m-d');
+
+        $query = "SELECT * FROM car
+                NATURAL JOIN rent
+                NATURAL JOIN customer
+                WHERE start_date >= '$start_date' AND end_date <= '$end_date'";
+        
+        $results = DB::select($query);
+        return view('admin.Reservations', compact('results'));
+    }
 }
 
 
