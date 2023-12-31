@@ -13,6 +13,7 @@
 - [ ] error msg on comboboxes not showning
 - [ ] office id validation not working / make it combobox in admin registration
 - [ ] view search by status not working
+- [x] update car status should insert in car_status table
 
 
 # DDL

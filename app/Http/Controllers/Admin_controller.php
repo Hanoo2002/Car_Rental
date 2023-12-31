@@ -50,6 +50,13 @@ class Admin_controller extends Controller
     
             if ($carStatus) {
                 $msg = "*Status updated successfully for car with plate number: " . $request->input('plateNumber_update');
+                $query_car_status = "INSERT INTO car_status (plate_number, `date`, `status`) 
+                    VALUES (?, ?, ?)";
+                $res2 = DB::insert($query_car_status, [
+                    $request->input('plateNumber_update'),
+                    Carbon::now(),
+                    $request->input('status')
+                ]);
                 return back()->with('success', $msg);
             } else {
                 $msg = "*Failed to update status.";
@@ -121,7 +128,7 @@ class Admin_controller extends Controller
     
             $res2 = DB::insert($query_car_status, [
                 $request->plateNumber,
-                Carbon::today(),
+                Carbon::now(),
                 $request->current_status
             ]);
     
