@@ -7,7 +7,7 @@
 - [x] admin sidemenu styling 
 - [x] admin sidemenu on hover? 
 - [x] admin sidemenu on click animation 
-- [ ] add color in DB
+- [x] add color in DB
 - [ ] add panel styling 
 - [ ] city dropdown options depend on country
 - [ ] error msg on comboboxes not showning
