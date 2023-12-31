@@ -298,7 +298,14 @@ class Admin_controller extends Controller
     // REPORTS
     public function Reservations(Request $request)
     {
-        return view("admin.Reservations");
+        $query = "SELECT * FROM car
+                NATURAL JOIN rent
+                NATURAL JOIN customer
+                NATURAL JOIN office";
+        $results = DB::select($query);
+        return view("admin.Reservations" ,[
+            "results"=>$results
+        ]);
     }
 
     public function Reservations_by_car(Request $request)
@@ -325,7 +332,7 @@ class Admin_controller extends Controller
         return view("admin.carstatus");
     } 
 
-    public function Reservation_apply(Request $request)
+    public function Reservations_apply(Request $request)
     {   
         $request->validate([
             'start_date'=>'required',
@@ -339,9 +346,10 @@ class Admin_controller extends Controller
         $end_date = Carbon::parse($end_date)->format('Y-m-d');
 
         $query = "SELECT * FROM car
-                NATURAL JOIN rent
-                NATURAL JOIN customer
-                WHERE start_date >= '$start_date' AND end_date <= '$end_date'";
+        NATURAL JOIN rent
+        NATURAL JOIN customer
+        NATURAL JOIN office
+        WHERE start_date >= '$start_date' AND end_date <= '$end_date'";
         
         $results = DB::select($query);
         return view('admin.Reservations',[
