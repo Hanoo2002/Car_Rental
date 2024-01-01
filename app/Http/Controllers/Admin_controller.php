@@ -352,32 +352,97 @@ class Admin_controller extends Controller
 
     public function carReservations_apply(Request $request)
     {
-        $request->validate([
-            'start_date' => 'required',
-            'end_date' => 'required',
-        ]);
+        /* $request->validate([
+             'start_date' => 'required',
+             'end_date' => 'required',
+             'plateNumber' =>'required'
+         ]);
 
+
+         $start_date = $request->start_date;
+         $end_date = $request->end_date;
+         $plate = $request->plateNumber;
+
+         $start_date = Carbon::parse($start_date)->format('Y-m-d');
+         $end_date = Carbon::parse($end_date)->format('Y-m-d');
+
+         $query = "SELECT * FROM car
+         NATURAL JOIN rent
+         NATURAL JOIN customer
+         NATURAL JOIN office
+         WHERE start_date >= '$start_date' AND end_date <= '$end_date' AND plate_number = '$plate'";
+
+         $results = DB::select($query);
+         return view(
+             'admin.carReservation',
+             [
+                 "results" => $results,
+                 "start_date" => $start_date,
+                 "end_date" => $end_date,
+                 "plateNumber" => $plate
+             ]
+         );*/
+
+
+        $validationRules = [
+            'plateNumber' => 'nullable', // Allow plate number to be null
+        ];
+
+        // Check if either start_date or end_date is provided, and add them to validation rules accordingly
+        if ($request-> start_date and $request->end_date) {
+            $validationRules['start_date'] = 'required';
+            $validationRules['end_date'] = 'required';
+        }
+        else{
+            $validationRules = ['plateNumber' => 'required',
+                                'start_date' => 'nullable',
+                                'end_date' => 'nullable',
+        ];
+        }
+        //dd($validationRules);
+        // Validate the request
+        $request->validate($validationRules);
+
+        // Get the input data
         $start_date = $request->start_date;
         $end_date = $request->end_date;
+        $plate = $request->plateNumber;
+        //dd($plate);
+        // Format the dates
+        $start_date = $start_date ? Carbon::parse($start_date)->format('Y-m-d') : null;
+        $end_date = $end_date ? Carbon::parse($end_date)->format('Y-m-d') : null;
 
-        $start_date = Carbon::parse($start_date)->format('Y-m-d');
-        $end_date = Carbon::parse($end_date)->format('Y-m-d');
-
+        // Build the base query
         $query = "SELECT * FROM car
         NATURAL JOIN rent
         NATURAL JOIN customer
         NATURAL JOIN office
-        WHERE start_date >= '$start_date' AND end_date <= '$end_date'";
+        WHERE 1"; // 1 is always true to start the query
 
+        // Modify the query based on the presence of start_date and end_date
+        if ($start_date && $end_date) {
+            $query .= " AND start_date >= '$start_date' AND end_date <= '$end_date'";
+        }
+
+        // Add condition for plate_number if provided
+        if ($plate) {
+            $query .= " AND car.plate_number = '$plate'";
+        }
+        //dd($plate);
+        // Execute the query
         $results = DB::select($query);
+
+        // Return the results to the view
         return view(
             'admin.carReservation',
             [
                 "results" => $results,
                 "start_date" => $start_date,
-                "end_date" => $end_date
+                "end_date" => $end_date,
+                "plateNumber" => $plate
             ]
         );
+
     }
 
     // **********************TAB3************************
