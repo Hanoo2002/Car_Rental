@@ -47,8 +47,8 @@ CREATE TABLE rent (
     start_date DATE,
     end_date DATE,
     amount_paid DECIMAL(10, 2),
-    FOREIGN KEY (SSN) REFERENCES customer(SSN),
-    FOREIGN KEY (plate_number) REFERENCES car(plate_number)
+    FOREIGN KEY (SSN) REFERENCES customer(SSN) ON DELETE CASCADE,
+    FOREIGN KEY (plate_number) REFERENCES car(plate_number) ON DELETE CASCADE
 );
 
 
@@ -71,5 +71,3 @@ CREATE TABLE car_status (
     PRIMARY KEY (plate_number, date),
     FOREIGN KEY (plate_number) REFERENCES car(plate_number) ON DELETE CASCADE
 );
-
-CREATE TABLE `procedure` (ssn int, plate_number VARCHAR(20), procedure_id VARCHAR(20) PRIMARY KEY, `procedure` VARCHAR(20), `date` datetime);
