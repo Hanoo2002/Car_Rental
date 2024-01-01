@@ -12,11 +12,19 @@
     <div>
         @include('components.sidebar')
     </div>
+    <script>
+        window.onload = function() {
+            if (performance.navigation.type === 1) {                
+                window.location.href = "/Users";                
+            }
+        };
+    </script>
+
     
     <div class="container">
-        <form action="search_user" method="GET">
+        <form id="searchForm" action="search_user" method="GET">
         @csrf
-            <input type="text" name="search" placeholder="Search users" required id="searchbar">
+            <input type="text" name="search" placeholder="Search users"  required id="searchbar">
             <button type="submit"><i class="fa fa-search"></i></button>
             <a href='original_page'><button type="button" class="reset-button">Reset</button></a>
 
@@ -48,5 +56,7 @@
             </div>
         </div>
     </div>
+
+<script src="{{ asset('js/Users.js') }}"></script>
 </body>
 </html>
