@@ -20,7 +20,7 @@
                  </label>
                  <br>
                 <span class="error" >@error('email')*{{$message}}@enderror</span>
-                 <i class='bx bxs-cat'></i>
+                 <i class='bx bxs-car'></i>
              </div>
             <div class="input-box">
                 <label>
