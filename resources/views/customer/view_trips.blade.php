@@ -18,7 +18,8 @@
             width: 100%;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
@@ -34,37 +35,44 @@
     </style>
 
 </head>
+
 <body>
-<div>
-    @include('components.customer_sidebar')
-</div>
-<div class ="view">
+    <div>
+        @include('components.customer_sidebar')
+    </div>
+
     <div class="wrapper1">
-        <h1>Available Cars</h1>
+        <h1>Rent History</h1>
 
         <div class="view_component">
             <div class="row">
                 <div class="col-12">
                     <table class="table table-bordered">
                         <thead>
-                        <tr>
-                            <th>date </th>
-                            <th>procedure</th>
-                            <th>date</th>
-                            <th>procedure id</th>
-                            <th>car plate</th>
-                            <th>Color</th>
-                            <th>year</th>
-                        </tr>
+                            <tr>
+                                <th>Car Plate</th>
+                                <th>Model</th>
+                                <th>Year</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Amount</th>
+                                <th>City</th>
+                                <th>Country</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @foreach($cars as $car)
+                            @foreach($results as $res)
                             <tr>
-                                <td>{{ $car->model }}</td>
-                                <td>{{ $car->color }}</td>
-                                <td>{{ $car->year }}</td>
+                                <td>{{ $res->plate_number }}</td>
+                                <td>{{ $res->model }}</td>
+                                <td>{{ $res->year}}</td>
+                                <td>{{ $res->start_date}}</td>
+                                <td>{{ $res->end_date}}</td>
+                                <td>{{ $res->amount_paid}}</td>
+                                <td>{{ $res->city}}</td>
+                                <td>{{ $res->country}}</td>
                             </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -73,7 +81,7 @@
 
 
     </div>
-</div>
+
 
 
 </body>

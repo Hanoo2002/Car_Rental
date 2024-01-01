@@ -101,7 +101,6 @@ class Customer_controller extends Controller
     public function rentCar($car)
     {
         $custSSN = session()->get('auth')-> SSN;
-        // TODO query to rent car
         
         $start_date = session('s_date'); 
         $end_date = session('e_date'); 
@@ -127,7 +126,7 @@ class Customer_controller extends Controller
 
         session()->flash("success", "Car rented successfully");
         // TODO redirect to pay trips
-        
+
         $user = session('auth');
         return view('customer.Profile', ['auth' => $user]);
     }
@@ -138,6 +137,17 @@ class Customer_controller extends Controller
 //
 //
 //    }
+    public function view_trips()
+    {
+
+        $custSSN = session()->get('auth')-> SSN;
+        $query = "SELECT * FROM car JOIN rent on car.plate_number = rent.plate_number
+        JOIN office on office.office_id = car.office_id where rent.SSN = '$custSSN' ;";
+        
+        $results = DB::select($query);
+        //dd($results);
+        return view("customer.view_trips" ,["results"=>$results]);
+    }
 
 }
 
