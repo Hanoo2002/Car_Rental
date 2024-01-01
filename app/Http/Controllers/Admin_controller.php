@@ -534,4 +534,63 @@ class Admin_controller extends Controller
             ]
         );
     }
+
+
+    public function add_office(Request $request){
+        // $request->validate([
+        //     'country' => 'required',
+        //     'city' => 'required',
+        //     'district' => 'required',
+        // ]);
+
+
+            return view("admin.add_office");
+            // $query = "INSERT INTO office (country, city, district) 
+            //     VALUES (?, ?, ?)";
+
+            // $res = DB::insert($query, [
+            //     $request->country,
+            //     $request->city,
+            //     $request->district,
+             
+            // ]);
+
+
+            // if ($res) {
+            //     return back()->with('success', 'You have added an office successfully');
+            // } else {
+            //     return back()->with('fail', 'Something went wrong');
+            // }
+       
+    
+}
+
+public function add_office_apply(Request $request)
+{
+    $request->validate([
+            'country' => 'required',
+            'city' => 'required',
+            'district' => 'required',
+        ]);
+
+
+        
+        $query = "INSERT INTO office (country, city, district) 
+            VALUES (?, ?, ?)";
+
+        $res = DB::insert($query, [
+            $request->country,
+            $request->city,
+            $request->district,
+         
+        ]);
+
+
+        if ($res) {
+            return back()->with('success', 'You have added an office successfully');
+        } else {
+            return back()->with('fail', 'Something went wrong');
+        }
+}
+
 }
