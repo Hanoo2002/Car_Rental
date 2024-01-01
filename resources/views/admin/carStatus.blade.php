@@ -25,7 +25,7 @@
             @csrf
             <div class="date-picker-container">
                <label for="date">Date</label>
-               <input class="search_bar" type="date" name="date" id="searchbar">
+               <input class="search_bar" type="date" name="date" id="searchbar" required>
                <button class="submit_btn" type="submit">Apply</button>
             </div>
             <p>Number of queries: {{ count($results) }}</p>
