@@ -52,4 +52,7 @@ use App\Http\Controllers\Admin_controller;
     // tab5
     Route::get('/payements', [Admin_controller::class, 'payements']);
     Route::post('/payements_apply', [Admin_controller::class, 'payements_apply']);
+
+    Route::get('/add_office', [Admin_controller::class, 'add_office']);
+    Route::post('/add_office_apply' ,[Admin_controller::class, 'add_office_apply']);
         

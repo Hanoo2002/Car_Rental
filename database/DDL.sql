@@ -1,6 +1,6 @@
 use Car_Rental;
 CREATE TABLE office (
-    office_id INT PRIMARY KEY,
+    office_id INT AUTO_INCREMENT PRIMARY KEY,
     district VARCHAR(50),
     country VARCHAR(50),
     city VARCHAR(50)
