@@ -40,13 +40,6 @@ class Customer_controller extends Controller
         $query = "Select * from car join office on car.office_id = office.office_id";
         $query .= " where current_status = 'available'";
 
-
-
-
-
-
-
-
         if ($model) {
             $query .= " and model LIKE :model";
         }
