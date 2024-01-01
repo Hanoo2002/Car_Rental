@@ -43,26 +43,13 @@ CREATE TABLE customer (
 CREATE TABLE rent (
     SSN VARCHAR(20),
     plate_number VARCHAR(20),
-    procedure_id VARCHAR(20) PRIMARY KEY,
+    procedure_id INT AUTO_INCREMENT PRIMARY KEY,
     start_date DATE,
     end_date DATE,
     amount_paid DECIMAL(10, 2),
     FOREIGN KEY (SSN) REFERENCES customer(SSN) ON DELETE CASCADE,
     FOREIGN KEY (plate_number) REFERENCES car(plate_number) ON DELETE CASCADE
 );
-
-
-CREATE TABLE pick_up (
-    SSN VARCHAR(20),
-    plate_number VARCHAR(20),
-    procedure_id VARCHAR(20) PRIMARY KEY,
-    pickup_hour TIME,
-    drop_hour TIME,
-    amount_paid DECIMAL(10, 2),
-    FOREIGN KEY (SSN) REFERENCES customer(SSN),
-    FOREIGN KEY (plate_number) REFERENCES car(plate_number)
-);
-
 
 CREATE TABLE car_status (
     plate_number VARCHAR(20),

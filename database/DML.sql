@@ -66,7 +66,7 @@ VALUES
 
 INSERT INTO admin (fname, lname, SSN, office_id, password, email)
 VALUES
-    ('John', 'Doe', 'SSN001', 1, 'adminpass', 'johndoe@example.com'),
+    ('John', 'Doe', 'SSN001', 1, 'adminpass', 'hassantamerha@gmail.com'),
     ('Alice', 'Smith', 'SSN002', 2, 'adminpass', 'alicesmith@example.com'),
     ('Mike', 'Johnson', 'SSN003', 3, 'adminpass', 'mikejohnson@example.com'),
     ('Emily', 'Brown', 'SSN004', 4, 'adminpass', 'emilybrown@example.com'),
@@ -107,38 +107,18 @@ VALUES
     ('SSN025', 'Yasmine', 'Lopez', '3332221111', 'yasmine@example.com', 'customerpass', '3333 2222 1111 4444');
 
 
-INSERT INTO rent (SSN, plate_number, procedure_id, start_date, end_date, amount_paid)
+INSERT INTO rent (SSN, plate_number, start_date, end_date, amount_paid)
 VALUES
-    ('SSN001', 'CAR001', "rent_1", '2023-01-01', '2023-01-07', 350.00),
-    ('SSN002', 'CAR002', "rent_2", '2023-02-15', '2023-02-22', 420.00),
-    ('SSN003', 'CAR003', "rent_3", '2023-03-10', '2023-03-17', 500.00),
-    ('SSN004', 'CAR004', "rent_4", '2023-04-05', '2023-04-12', 300.00),
-    ('SSN005', 'CAR005', "rent_5", '2023-05-20', '2023-05-27', 450.00),
-    ('SSN006', 'CAR006', "rent_6", '2023-06-11', '2023-06-18', 480.00),
-    ('SSN007', 'CAR007', "rent_7", '2023-07-03', '2023-07-10', 520.00),
-    ('SSN008', 'CAR008', "rent_8", '2023-08-17', '2023-08-24', 600.00),
-    ('SSN009', 'CAR009', "rent_9", '2023-09-25', '2023-10-02', 400.00),
-    ('SSN010', 'CAR010', "rent_10", '2023-10-30', '2023-11-06', 470.00);
-
-INSERT INTO pick_up (SSN, plate_number, procedure_id, pickup_hour, drop_hour, amount_paid)
-VALUES
-    ('SSN011', 'CAR011', "pick_up_1", '09:00:00', '12:00:00', 50.00),
-    ('SSN012', 'CAR022', "pick_up_2", '10:30:00', '13:30:00', 60.00),
-    ('SSN013', 'CAR043', "pick_up_3", '11:15:00', '14:15:00', 70.00),
-    ('SSN014', 'CAR044', "pick_up_4", '13:00:00', '16:00:00', 55.00),
-    ('SSN015', 'CAR015', "pick_up_5", '14:45:00', '17:45:00', 65.00),
-    ('SSN016', 'CAR026', "pick_up_6", '16:20:00', '19:20:00', 75.00),
-    ('SSN017', 'CAR037', "pick_up_7", '18:00:00', '21:00:00', 80.00),
-    ('SSN018', 'CAR018', "pick_up_8", '19:30:00', '22:30:00', 45.00),
-    ('SSN019', 'CAR029', "pick_up_9", '20:45:00', '23:45:00', 85.00),
-    ('SSN020', 'CAR050', "pick_up_10", '22:10:00', '01:10:00', 90.00);
-
--- Assuming the table structure is as follows:
--- CREATE TABLE car_status (
---     plate_id VARCHAR(10),
---     status VARCHAR(20),
---     date DATE
--- );
+    ('SSN001', 'CAR001', '2023-01-01', '2023-01-07', 350.00),
+    ('SSN002', 'CAR002', '2023-02-15', '2023-02-22', 420.00),
+    ('SSN003', 'CAR003', '2023-03-10', '2023-03-17', 500.00),
+    ('SSN004', 'CAR004', '2023-04-05', '2023-04-12', 300.00),
+    ('SSN005', 'CAR005', '2023-05-20', '2023-05-27', 450.00),
+    ('SSN006', 'CAR006', '2023-06-11', '2023-06-18', 480.00),
+    ('SSN007', 'CAR007', '2023-07-03', '2023-07-10', 520.00),
+    ('SSN008', 'CAR008', '2023-08-17', '2023-08-24', 600.00),
+    ('SSN009', 'CAR009', '2023-09-25', '2023-10-02', 400.00),
+    ('SSN010', 'CAR010', '2023-10-30', '2023-11-06', 470.00);
 
 
 INSERT INTO car_status (plate_number, status, date)
