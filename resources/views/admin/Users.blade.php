@@ -27,6 +27,7 @@
             <input type="text" name="search" placeholder="Search users"  required id="searchbar">
             <button type="submit"><i class="fa fa-search"></i></button>
             <a href='original_page'><button type="button" class="reset-button">Reset</button></a>
+            <p>Number of queries: {{ count($users) }}</p>
 
         </form>
         <div class="row">

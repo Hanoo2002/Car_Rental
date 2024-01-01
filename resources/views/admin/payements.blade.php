@@ -12,7 +12,13 @@
     <div>
         @include('components.sidebar')
     </div>
-    
+    <script>
+        window.onload = function() {            
+            if (performance.navigation.type === 1) {  
+                window.location.href = "/payements";                
+            }
+        };
+    </script>
     <div class="container">
     <form action="payements_apply" method="POST" class="form_container">
             @csrf

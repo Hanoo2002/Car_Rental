@@ -11,6 +11,14 @@
     <div>
         @include('components.sidebar')
     </div>
+
+    <script>
+        window.onload = function() {
+            if (performance.navigation.type === 1) {                
+                window.location.href = "/View";                
+            }
+        };
+    </script>
     
     <div class="container">
         <div class="nav">

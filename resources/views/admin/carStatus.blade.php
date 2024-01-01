@@ -11,6 +11,14 @@
     <div>
         @include('components.sidebar')
     </div>
+
+    <script>
+        window.onload = function() {            
+            if (performance.navigation.type === 1) {  
+                window.location.href = "/carStatus";                
+            }
+        };
+    </script>
     
     <div class="container">     
          <form action="carStatus_apply" method="POST" class="form_container">
@@ -23,7 +31,7 @@
             <p>Number of queries: {{ count($results) }}</p>
             <?php
             try {
-                echo "Reservations IN " . $date;
+                echo "<p>Reservations IN " . $date."<p>";
             } catch (Exception $e) {
             }
             ?>

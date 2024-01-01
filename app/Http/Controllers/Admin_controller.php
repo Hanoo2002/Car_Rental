@@ -287,7 +287,7 @@ class Admin_controller extends Controller
 
     public function originalPage_car(Request $request)
     {
-        return view("admin.View");
+        return $this->search_car_admin($request);
     }
 
     // **********************REPORTS************************
@@ -352,38 +352,6 @@ class Admin_controller extends Controller
 
     public function carReservations_apply(Request $request)
     {
-        /* $request->validate([
-             'start_date' => 'required',
-             'end_date' => 'required',
-             'plateNumber' =>'required'
-         ]);
-
-
-         $start_date = $request->start_date;
-         $end_date = $request->end_date;
-         $plate = $request->plateNumber;
-
-         $start_date = Carbon::parse($start_date)->format('Y-m-d');
-         $end_date = Carbon::parse($end_date)->format('Y-m-d');
-
-         $query = "SELECT * FROM car
-         NATURAL JOIN rent
-         NATURAL JOIN customer
-         NATURAL JOIN office
-         WHERE start_date >= '$start_date' AND end_date <= '$end_date' AND plate_number = '$plate'";
-
-         $results = DB::select($query);
-         return view(
-             'admin.carReservation',
-             [
-                 "results" => $results,
-                 "start_date" => $start_date,
-                 "end_date" => $end_date,
-                 "plateNumber" => $plate
-             ]
-         );*/
-
-
         $validationRules = [
             'plateNumber' => 'nullable', // Allow plate number to be null
         ];
