@@ -69,7 +69,7 @@ CREATE TABLE car_status (
     status VARCHAR(50),
     date TIMESTAMP,
     PRIMARY KEY (plate_number, date),
-    FOREIGN KEY (plate_number) REFERENCES car(plate_number)
+    FOREIGN KEY (plate_number) REFERENCES car(plate_number) ON DELETE CASCADE
 );
 
 CREATE TABLE `procedure` (ssn int, plate_number VARCHAR(20), procedure_id VARCHAR(20) PRIMARY KEY, `procedure` VARCHAR(20), `date` datetime);

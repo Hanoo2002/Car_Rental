@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\admin;
 use App\Models\Customer;
 use Hash;
+use Illuminate\Routing\Controller;
 use Session;
 use App\Models\Car;
 use App\Models\car_status;
@@ -25,126 +26,34 @@ class Admin_controller extends Controller
 
     public function update()
     {
-        $query = "SELECT SSN from customer;";
         $query2 = "SELECT plate_number from car;";
-        $res = DB::select($query);
         $res2 = DB::select($query2);
-        return view('admin.Update', ['customers' => $res, 'plates' => $res2]);
+        return view('admin.Update', ['plates' => $res2]);
     }
 
     public function update_car(Request $request)
     {
         $request->validate([
             'plateNumber_update' => 'required',
-            'status' => 'required'
+            'status' => 'required|in:available,out_of_service'
         ]);
 
 
         $stat = $request->input('status');
-        $ssn = $request->input('ssn');
-        if ($ssn) {
-            if ($stat == 'rented') //picked up
-            {
-                $select_car_query = "SELECT * FROM rent WHERE plate_number = ? AND SSN = ? ;";
-                $res = DB::select($select_car_query, [$request->input('plateNumber_update'), $request->input('ssn')]);
-                if (!($res)) {
-                    $msg = "*Car with plate number" . $request->input('plateNumber_update') . " not found to be rented to this customer. ";
-                    return back()->with('fail', $msg);
-                }
+        $car_plate = $request->input('plateNumber_update');
 
+        $update_car_query = "UPDATE car SET current_status = ? WHERE plate_number = ? ";
+        DB::update($update_car_query, [$stat, $car_plate]);
+        $msg = "*Status updated successfully";
 
-                $insert_query = "INSERT INTO `procedure` (ssn, plate_number, `procedure`, `date` ) VALUES ('?','?','pick_up',?); ";
-                $res = DB::insert($insert_query, [
-                    $request->input('ssn'),
-                    $request->input('plateNumber_update'),
-                    Carbon::now()
-                ]);
-
-                $update_car_query = "UPDATE car SET current_status = 'busy' WHERE plate_number = '?'";
-                $carStatus = DB::update($update_car_query, [$request->input('plateNumber_update')]);
-                if ($carStatus and $res) {
-                    $msg = "*Status updated successfully";
-                    return back()->with('success', $msg);
-                } else {
-                    $msg = "*Failed to update status.";
-                    return back()->with('fail', $msg);
-                }
-            } else if ($stat == 'active') { //return
-
-               // $select_car_query = "SELECT * FROM rent WHERE plate_number = '?' AND SSN = '?' ;";
-               
-                $res =DB::select('SELECT * FROM rent WHERE plate_number = ? AND SSN = ?', [$request->input('plateNumber_update'), $ssn]);
-                //dd($res);
-                if (!($res)) {
-                    $msg = "*Car with plate number" . $request->input('plateNumber_update') . " not found to be rented to this customer. ";
-                    return back()->with('fail', $msg);
-                }
-
-                $insert_query = "INSERT INTO `procedure` (ssn, plate_number, `procedure`, `date` ) VALUES ('?','?','return','?'); ";
-                $res = DB::insert($insert_query, [
-                    $request->input('ssn'),
-                    $request->input('plateNumber_update'),
-                    Carbon::today()
-                ]);
-
-                $update_car_query = "UPDATE car SET current_status = 'available' WHERE plate_number = '?' ";
-                $carStatus = DB::update($update_car_query, [$request->input('plateNumber_update')]);
-
-                $update_rent_query = "UPDATE rent SET end_date =? WHERE plate_number = '?';";
-                $rentStatus = DB::update($update_rent_query, [Carbon::now(), $request->input('plateNumber_update')]);
-
-                if ($carStatus and $res and $rentStatus) {
-                    $msg = "*Status updated successfully";
-                    return back()->with('success', $msg);
-                } else {
-                    $msg = "*Failed to update status.";
-                    return back()->with('fail', $msg);
-                }
-            }
-        } else {
-            if ($stat == "out_of_service") {
-                $update_car_query = "UPDATE car SET current_status = 'out_of_service' WHERE plate_number = '?' ;";
-                $carStatus = DB::update($update_car_query, [$request->input('plateNumber_update')]);
-
-
-
-            } else {
-                $msg = "*Failed to update status.";
-                return back()->with('fail', $msg);
-            }
-        }
-
-
-        /* if(!($res)){
-             $msg = "*Car with plate number " . $request->input('plateNumber_update') . " not found.";
-             return back()->with('fail', $msg);
-         }
-         $car = $res[0];
-     
-         if ($car) {
-             $update_car_query = "UPDATE car SET current_status = ? WHERE plate_number = ?";
-             $carStatus = DB::update($update_car_query, [$request->input('status'), $request->input('plateNumber_update')]);
-     
-             if ($carStatus) {
-                 $msg = "*Status updated successfully for car with plate number: " . $request->input('plateNumber_update');
-                 $query_car_status = "INSERT INTO car_status (plate_number, `date`, `status`) 
-                     VALUES (?, ?, ?)";
-                 $res2 = DB::insert($query_car_status, [
-                     $request->input('plateNumber_update'),
-                     Carbon::now(),
-                     $request->input('status')
-                 ]);
-                 return back()->with('success', $msg);
-             } else {
-                 $msg = "*Failed to update status.";
-                 return back()->with('fail', $msg);
-                 
-             }
-         } else {
-             $msg = "*Car with plate number " . $request->input('plateNumber_update') . " not found.";
-             return back()->with('fail', $msg);
-         }*/
-
+        $carInsert = "INSERT into car_status values(?, ?, ?) ON DUPLICATE KEY UPDATE status=?";
+        DB::insert($carInsert, [
+            $car_plate,
+            $stat,
+            now()->format("Y-m-d"),
+            $stat,
+        ]);
+        return back()->with('success', $msg);
     }
 
     public function delete_car(Request $request)
@@ -513,11 +422,7 @@ class Admin_controller extends Controller
     // **********************TAB4************************
     public function customerReservation(Request $request)
     {
-        $query = "SELECT * FROM customer
-        NATURAL JOIN `procedure`
-        NATURAL JOIN car
-        NATURAL JOIN office
-        UNION
+        $query = "
         SELECT * FROM customer
         NATURAL JOIN rent
         NATURAL JOIN car
@@ -535,18 +440,7 @@ class Admin_controller extends Controller
         $srch = $request->input('search');
         $searchQuery = '%' . $srch . '%';
 
-        $query = "SELECT * FROM customer
-        NATURAL JOIN `procedure`
-        NATURAL JOIN car
-        NATURAL JOIN office
-    WHERE (fname LIKE '$searchQuery' 
-        OR lname LIKE '$searchQuery' 
-        OR email LIKE '$searchQuery' 
-        OR phone_number LIKE '$searchQuery' 
-        OR SSN LIKE '$searchQuery')
-    
-    UNION
-    
+        $query = "
     SELECT * FROM customer
         NATURAL JOIN rent
         NATURAL JOIN car
