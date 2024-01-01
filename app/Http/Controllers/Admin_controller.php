@@ -514,7 +514,7 @@ class Admin_controller extends Controller
     public function customerReservation(Request $request)
     {
         $query = "SELECT * FROM customer
-        NATURAL JOIN pick_up
+        NATURAL JOIN `procedure`
         NATURAL JOIN car
         NATURAL JOIN office
         UNION
@@ -536,7 +536,7 @@ class Admin_controller extends Controller
         $searchQuery = '%' . $srch . '%';
 
         $query = "SELECT * FROM customer
-        NATURAL JOIN pick_up
+        NATURAL JOIN `procedure`
         NATURAL JOIN car
         NATURAL JOIN office
     WHERE (fname LIKE '$searchQuery' 

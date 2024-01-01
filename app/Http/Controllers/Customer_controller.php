@@ -22,7 +22,7 @@ class Customer_controller extends Controller
         return view("customer.View");
     }
 
-   
+
 
     public function rent(Request $request)
     {
@@ -39,6 +39,13 @@ class Customer_controller extends Controller
 
         $query = "Select * from car join office on car.office_id = office.office_id";
         $query .= " where current_status = 'available'";
+
+
+
+
+
+
+
 
         if ($model) {
             $query .= " and model LIKE :model";
@@ -98,12 +105,17 @@ class Customer_controller extends Controller
         return view("customer.rent", compact('cars'));
     }
 
-    public function rentCar($car)
+    public function rentCar(Request $request, $car)
     {
         $custSSN = session()->get('auth')-> SSN;
         
         $start_date = session('s_date'); 
-        $end_date = session('e_date'); 
+        $end_date = session('e_date');
+
+        if($start_date==null || $end_date == null ){
+            return redirect()->back()->withErrors(['date' => 'Please enter a valid date.']);
+        }
+        else{
        // dd($start_date);
         // Build the SQL query string
         $sql = "INSERT INTO rent (SSN, plate_number, start_date ,end_date, amount_paid) VALUES (?, ?, ?, ?, ?)";
@@ -128,7 +140,8 @@ class Customer_controller extends Controller
         // TODO redirect to pay trips
 
         $user = session('auth');
-        return view('customer.Profile', ['auth' => $user]);
+        //return view('customer.Profile', ['auth' => $user]);
+        return redirect('/user_profile');}
     }
     //    public function search_car(Request $request)
 //    {

@@ -94,9 +94,15 @@
             <br></br>
             <input  class="search_bar"  type="text" name="city" placeholder="City" id="searchbar">
             <br></br>
-            <input  class="search_bar"  type="date" name="start_date" id="searchbar">
+            <input  class="search_bar"  type="date" name="start_date" id="searchbar" required>
+            @if($errors->has('date'))
+               <span class="text-danger">{{ $errors->first('date') }}</span>
+            @endif
             <br></br>
-            <input  class="search_bar"  type="date" name="end_date" id="searchbar">
+            <input  class="search_bar"  type="date" name="end_date" id="searchbar" required>
+            @if($errors->has('date'))
+               <span class="text-danger">{{ $errors->first('date') }}</span>
+            @endif
             <br></br>
             <button class="submit_btn" type="submit">Apply<i class="fa fa-search"></i></button>
             

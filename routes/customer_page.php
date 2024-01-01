@@ -18,3 +18,5 @@ Route::get('/View_customer',[Customer_controller::class,'view_tab']);
 Route::get('/rent',[Customer_controller::class,'rent']);
 Route::get('/rent/{car}',[Customer_controller::class, 'rentCar']);
 Route::get('/view_trips',[Customer_controller::class,'view_trips']);
+Route::get('/login_user', 'YourController@yourMethod')->name('login_user');
+
