@@ -10,6 +10,7 @@ use Hash;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class CustomAuthController extends Controller
 {
@@ -157,10 +158,20 @@ class CustomAuthController extends Controller
 
     public function logout()
     {
+        // Clear session data
         Session::flush();
+    
+        // Logout user
         Auth::logout();
-        return redirect('/');
+    
+        // Prevent caching of secure pages
+        $response = Response::make('', 200);
+        $response->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $response->header('Pragma', 'no-cache');
+        $response->header('Expires', '0');
+        $response->header('Last-Modified', gmdate('D, d M Y H:i:s') . ' GMT');
+    
+        return redirect('/')->withHeaders($response->headers->all());
     }
-
 
 }
