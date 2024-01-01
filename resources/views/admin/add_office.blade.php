@@ -34,6 +34,7 @@
          <span class="error">@error('district') {{$message}}@enderror</span>
 
 
+         <br><br>
          <input class="btn" type="submit" value="Add">
 
          @if(session('success')) <div class="success-message" style="color: green;">
