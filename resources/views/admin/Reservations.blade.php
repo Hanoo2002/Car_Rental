@@ -11,6 +11,14 @@
     <div>
         @include('components.sidebar')
     </div>
+
+    <script>
+        window.onload = function() {            
+            if (performance.navigation.type === 1) {  
+                window.location.href = "/Reservations";                
+            }
+        };
+    </script>
     
     <div class="container">     
          <form action="Reservations_apply" method="POST" class="form_container">

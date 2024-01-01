@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/admin/Reservations.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/carReservation.css') }}">
     <title>Car Reservation</title>
     @vite('resources/css/app.css')
 </head>
@@ -13,6 +13,14 @@
     <div>
         @include('components.sidebar')
     </div>
+
+    <script>
+        window.onload = function() {            
+            if (performance.navigation.type === 1) {  
+                window.location.href = "/carReservation";                
+            }
+        };
+    </script>
 
     <div class="container">
         <form action="carReservations_apply" method="POST" class="form_container">
@@ -34,11 +42,16 @@
             </div>
             <p>Number of queries: {{ count($results) }}</p>
             <?php
-            try {
-                echo "Reservation Between " . $start_date . " AND " . $end_date;
-            } catch (Exception $e) {
-            }
+                try {
+                    if ($start_date != null && $end_date != null){
+                        echo "<p class='reservation-text'>Reservation Between " . $start_date . " AND " . $end_date . "</p>";                        
+                    }
+                    if($plateNumber){
+                        echo "<p class='plate-number-text'>Plate Number: " . $plateNumber . "</p>";
+                    }
+                } catch (Exception $e) {}
             ?>
+
         </form>
 
         <div class="row">

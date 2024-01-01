@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/admin/Users.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <title>Users</title>
+    <title>Customer Reservation</title>
     @vite('resources/css/app.css')
 </head>
 <body>
     <div>
         @include('components.sidebar')
     </div>
+
+    <script>
+        window.onload = function() {            
+            if (performance.navigation.type === 1) {  
+                window.location.href = "/customerReservation";                
+            }
+        };
+    </script>
     
     <div class="container">
         <form action="customerReservation_apply" method="POST">
